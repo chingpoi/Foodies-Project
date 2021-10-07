@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+    
+{% include "header.html" %}
+
+<body>
+    <style>
+        html {
+          scroll-behavior: smooth;
+        }
+        </style>
+    {% load static %}
+            <!-- Carousel Start -->
+            
+            <div class="carousel"style="background-image: url('{% static 'images/back.png' %}"; id="home">
+                <div class="container-fluid" style="max-width: 1500px">
+                    <div class="owl-carousel">
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/carousel-1.jpg' %}" alt="Image">
+                            </div>
+                            <div class="carousel-text">
+                                <h1 style="font-size: 50px;">Your <span>Favorite</span> Restaurants</h1>
+                                <p>
+                                    Find your favorite restaurants with Foodies
+                                </p>
+                                <div class="carousel-btn">
+                                    <a class="btn custom-btn" href="#restaurants" >Login</a>
+                                    <a class="btn custom-btn" href="">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/carousel-2.jpg' %}" alt="Image">
+                                
+                            </div>
+                            <div class="carousel-text">
+                                <h1>Book a <span>Reservation</span> </h1>
+                                <p>
+                                    Foodies will take care of your reservation
+                                </p>
+                                <div class="carousel-btn">
+                                    <a class="btn custom-btn" href="#reserve" >Login</a>
+                                    <a class="btn custom-btn" href="">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/carousel-3.jpg' %}" alt="Image">
+                            </div>
+                            <div class="carousel-text" >
+                                <h1>Fastest Order <span>Delivery</span></h1>
+                                <p>
+                                    Foodies can deliver your favorite meal straight to your door
+                                </p>
+                                <div class="carousel-btn">
+                                    <a class="btn custom-btn" href="#restaurants" >Login</a>
+                                    <a class="btn custom-btn" href="">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel End -->
+            
+            
+            <!-- Booking Start -->
+            <!--  
+            <div class="booking"id="reserve" style="padding-top: 5%;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7">
+                            <div class="booking-content">
+                                <div class="section-header">
+                                    <p>Book A Table</p>
+                                    <h2>Book Your Table For Private Dinners & Happy Hours</h2>
+                                </div>
+                                <div class="about-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                                    </p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="booking-form">
+                                <form>
+                                    <div class="control-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Name" required="required" />
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="far fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control" placeholder="Email" required="required" />
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Mobile" required="required" />
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="input-group date" id="date" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                                            <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="input-group time" id="time" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" placeholder="Time" data-target="#time" data-toggle="datetimepicker"/>
+                                            <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="input-group">
+                                            <select class="custom-select form-control">
+                                                <option selected>Guest</option>
+                                                <option value="1">1 Guest</option>
+                                                <option value="2">2 Guest</option>
+                                                <option value="3">3 Guest</option>
+                                                <option value="4">4 Guest</option>
+                                                <option value="5">5 Guest</option>
+                                                <option value="6">6 Guest</option>
+                                                <option value="7">7 Guest</option>
+                                                <option value="8">8 Guest</option>
+                                                <option value="9">9 Guest</option>
+                                                <option value="10">10 Guest</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-chevron-down"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class="btn custom-btn" type="submit">Book Now</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+            <!-- Booking End -->
+            
+    
+            <!-- About Start -->
+            <div class="about" id="about">
+                <div class="container" style="padding-top: 2%;">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="about-img">
+                                <img src="{% static 'images/devchan.png' %}" alt="Image">
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-content">
+                                <div class="section-header">
+                                    <p>About Us</p>
+                                    <h2>Your Food Buddy since 2021</h2>
+                                </div>
+                                <div class="about-text">
+                                    <p>
+                                        Foodies, developed by Jasper Ching and Luc Nathan Miscala has been serving as your food buddy since 2021.
+                                    </p>
+                                    <p>
+                                        The team has always been passionate to connecting you to your favorite restaurants.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- About End -->
+            
+            
+            <!-- Video Modal Start-->
+            <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>        
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!-- Video Modal End -->
+            
+            
+            <!-- Feature Start -->
+            <div class="feature" id="features" style="padding-top: 5%;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="section-header">
+                                <p>Why Choose Us</p>
+                                <h2>Our Key Features</h2>
+                            </div>
+                            <div class="feature-text">
+                                <div class="feature-img">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <img src="{% static 'images/feature-1.jpg' %}" alt="Image">
+                                        </div>
+                                        <div class="col-6">
+                                            <img src="{% static 'images/feature-2.jpg' %}" alt="Image">
+                                        </div>
+                                        <div class="col-6">
+                                            <img src="{% static 'images/feature-3.jpg' %}" alt="Image">
+                                        </div>
+                                        <div class="col-6">
+                                            <img src="{% static 'images/feature-4.jpg' %}" alt="Image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>
+                                    Foodies, your food buddy will help you satisfy your cravings.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-7" style="padding-top: 7%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="feature-item">
+                                        <i class="flaticon-cooking"></i>
+                                        <h3>Reservations</h3>
+                                        <p>
+                                            Foodies will book your reservations, and your favorite restaurants can serve your meal the moment you arrive.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="feature-item">
+                                        <i class="flaticon-medal"></i>
+                                        <h3>Top Rated Restaurants</h3>
+                                        <p>
+                                            Foodies are in partnership with top rated restaurants. We will connect you to the best of the best.
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="feature-item">
+                                        <i class="flaticon-courier"></i>
+                                        <h3>Fastest door delivery</h3>
+                                        <p>
+                                            If you don't feel like going out, foodies will help you satisfy your cravings with our fastest door delivery.
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="feature-item">
+                                        <i class="flaticon-fruits-and-vegetables"></i>
+                                        <h3>High Quality Standards</h3>
+                                        <p>
+                                            Foodies will insure that your favorite restaurants will maintain the same standards as the moment when you first dined with them.
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature End -->
+            
+            
+            <!-- Food Start 
+            <div class="food" style="padding-top: 5%;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <div class="food-item">
+                                <i class="flaticon-burger"></i>
+                                <h2>Burgers</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasel nec pretium mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor auctor quis sem. 
+                                </p>
+                                <a href="">View Menu</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="food-item">
+                                <i class="flaticon-snack"></i>
+                                <h2>Snacks</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasel nec pretium mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor auctor quis sem. 
+                                </p>
+                                <a href="">View Menu</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="food-item">
+                                <i class="flaticon-cocktail"></i>
+                                <h2>Beverages</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasel nec pretium mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor auctor quis sem. 
+                                </p>
+                                <a href="">View Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+            <!-- Food End -->
+            
+            
+            <!-- Menu Start 
+            <div class="menu" style="padding-top: 5%;">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <p>Food Menu</p>
+                        <h2>Delicious Food Menu</h2>
+                    </div>
+                    <div class="menu-tab">
+                        <ul class="nav nav-pills justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#burgers">Burgers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#snacks">Snacks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#beverages">Beverages</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="burgers" class="container tab-pane active">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-12">
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-burger.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Mini cheese Burger</span> <strong>$9.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-burger.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Double size burger</span> <strong>$11.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-burger.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Bacon, EGG and Cheese</span> <strong>$13.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-burger.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Pulled porx Burger</span> <strong>$18.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-burger.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Fried chicken Burger</span> <strong>$22.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 d-none d-lg-block">
+                                        <img src="{% static 'images/menu-burger-img.jpg' %}" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="snacks" class="container tab-pane fade">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-12">
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-snack.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Corn Tikki - Spicy fried Aloo</span> <strong>$15.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-snack.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Bread besan Toast</span> <strong>$35.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-snack.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Healthy soya nugget snacks</span> <strong>$20.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-snack.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Tandoori Soya Chunks</span> <strong>$30.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 d-none d-lg-block">
+                                        <img src="{% static 'images/menu-snack-img.jpg' %}" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="beverages" class="container tab-pane fade">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-12">
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-beverage.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Single Cup Brew</span> <strong>$7.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-beverage.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Caffe Americano</span> <strong>$9.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-beverage.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Caramel Macchiato</span> <strong>$15.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-beverage.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Standard black coffee</span> <strong>$8.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="{% static 'images/menu-beverage.jpg' %}" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span>Standard black coffee</span> <strong>$12.00</strong></h3>
+                                                <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 d-none d-lg-block">
+                                        <img src="{% static 'images/menu-beverage-img.jpg' %}" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Menu End -->
+            
+            <!-- Team Start 
+            <div class="team" style="padding-top: 5%;">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <p>Our Team</p>
+                        <h2>Our Master Chef</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="{% static 'images/team-1.jpg' %}" alt="Image">
+                                    
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-text">
+                                    <h2>Adam Phillips</h2>
+                                    <p>CEO, Co Founder</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="{% static 'images/team-2.jpg' %}" alt="Image">
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-text">
+                                    <h2>Dylan Adams</h2>
+                                    <p>Master Chef</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="{% static 'images/team-3.jpg' %}" alt="Image">
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-text">
+                                    <h2>Jhon Doe</h2>
+                                    <p>Master Chef</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="{% static 'images/team-4.jpg' %}" alt="Image">
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-text">
+                                    <h2>Josh Dunn</h2>
+                                    <p>Master Chef</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Team End -->
+            
+            
+            <!-- Testimonial Start -->
+
+            <div class="testimonial" id="restaurants" style="padding-top: 5%;">
+                <div class="section-header text-center">
+                    <h2>Featured Restaurants</h2>
+                </div>
+                <div class="container">
+                    <div class="owl-carousel testimonials-carousel">
+                        <div class="testimonial-item" style="min-height: 340px; max-height: 340px;">
+                            <div class="testimonial-img">
+                                <img src="{% static 'images/anzani.jpg' %}" alt="Image">
+                            </div>
+                            <p>
+                                Anzani New Mediterranean Cuisine brings culinary innovation in a spectacular and unique dining setting in Cebu, Philippines.
+                            </p>
+                            <h2>Azani</h2>
+                            <h3>Italian, Mediterranean, European</h3>
+                        </div>
+                        <div class="testimonial-item" style="min-height: 340px; max-height: 340px;">
+                            <div class="testimonial-img">
+                                <img src="{% static 'images/zubuchon.jpg' %}" alt="Image">
+                            </div>
+                            <p style="padding-bottom: 25px; padding-top: 25px;">
+                                Cebu-hailing restaurant known for its all-natural take on lechon. 
+                            </p>
+                            <h2>Zubuchon</h2>
+                            <h3>Filipino, Asian</h3>
+                        </div>
+                        <div class="testimonial-item" style="min-height: 340px; max-height: 340px;">
+                            <div class="testimonial-img">
+                                <img src="{% static 'images/pizzeria.png' %}" alt="Image">
+                            </div>
+                            <p>
+                                Fresh produce and high-quality ingredients being its essence, Italian cuisine is one of the world's healthiest and most loved.
+                            </p>
+                            <h2>Pizzeria Michelangelo</h2>
+                            <h3>Italian, Pizza, Vegetarian Friendly</h3>
+                        </div>
+                        <div class="testimonial-item" style="min-height: 340px; max-height: 340px;">
+                            <div class="testimonial-img">
+                                <img src="{% static 'images/shawarma.jpg' %}" alt="Image">
+                            </div>
+                            <p style="padding-bottom: 25px;">
+                                An Authentic Lebanese Comfort Food Restaurant.
+                            </p>
+                            <h2 style="padding-top: 10px;">Shawarma Gourmet</h2>
+                            <h3 style="text-align: center;">Lebanese, Mediterranean, Middle Eastern</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial End -->
+            
+            
+            <!-- Contact Start -->
+            <div class="contact" style="padding-top: 5%;" id="contact">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <p>Contact Us</p>
+                        <h2>Contact For Any Query</h2>
+                    </div>
+                    <div class="row align-items-center contact-information">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="contact-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>Address</h3>
+                                    <p>Archbishop Reyes Ave, Cebu City, Cebu</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="contact-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>Call Us</h3>
+                                    <p>+639 7272 664</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="contact-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>Email Us</h3>
+                                    <p>foodies@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="contact-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-share"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>Follow Us</h3>
+                                    <div class="contact-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-youtube"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row contact-form">
+                        <div class="col-md-6">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7850.54587835618!2d123.90417865740797!3d10.320028185933387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99f140bab839b%3A0x6f307aaf6f40f02d!2sQuest%20Hotel%20and%20Conference%20Center!5e0!3m2!1sen!2sph!4v1633565760099!5m2!1sen!2sph" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="success"></div>
+                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                                <div class="control-group">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group">
+                                    <textarea class="form-control" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div>
+                                    <button class="btn custom-btn" type="submit" id="sendMessageButton">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact End -->
+    
+    
+            <!-- Blog Start 
+            <div class="blog" style="padding-top: 5%;">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <p>Food Blog</p>
+                        <h2>Latest From Food Blog</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <img src="{% static 'images/blog-1.jpg' %}" alt="Blog">
+                                </div>
+                                <div class="blog-content">
+                                    <h2 class="blog-title">Lorem ipsum dolor sit amet</h2>
+                                    <div class="blog-meta">
+                                        <p><i class="far fa-user"></i>Admin</p>
+                                        <p><i class="far fa-list-alt"></i>Food</p>
+                                        <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                        <p><i class="far fa-comments"></i>10</p>
+                                    </div>
+                                    <div class="blog-text">
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor. Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                        </p>
+                                        <a class="btn custom-btn" href="">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <img src="{% static 'images/blog-2.jpg' %}" alt="Blog">
+                                </div>
+                                <div class="blog-content">
+                                    <h2 class="blog-title">Lorem ipsum dolor sit amet</h2>
+                                    <div class="blog-meta">
+                                        <p><i class="far fa-user"></i>Admin</p>
+                                        <p><i class="far fa-list-alt"></i>Food</p>
+                                        <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                        <p><i class="far fa-comments"></i>10</p>
+                                    </div>
+                                    <div class="blog-text">
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor. Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                        </p>
+                                        <a class="btn custom-btn" href="">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog End -->
+</body>
+
+{% include "footer.html" %}
+</html>

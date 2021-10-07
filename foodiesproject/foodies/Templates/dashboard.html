@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    
+{% include "header.html" %}
+
+<body>
+    
+    {% load static %}
+        <!-- Page Header Start -->
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Admin Dashboard</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        
+        
+        <!-- Food Start -->
+        <div class="barGraph" style="width:700px; background-color: #FFFF; margin-left: 250px; margin-top: 50px; border-radius: 5px; border-style: ridge;">
+            <canvas id="myChartBar"></canvas>
+        </div>
+        <div class="doughGraph" style="width:450px; background-color: #FFFF; margin-left: 1000px; margin-top: -400px; border-radius: 5px; border-style: ridge;">
+        <canvas id="myChartdough"></canvas>
+        </div>
+        <!-- Food End -->
+
+            
+
+            <br><br>
+            <!--FOR RESTAURANT DASHBOARD -->
+            <center><h4 style="color: black;">List of Restaurants</h4></center>
+            <center>
+            <a type = "button" href = "{% url 'foodies:resRegister_view' %}" style="background: #EEBC1D; color: #fff; font-weight: 700; border-radius: 24px; width: 20%; text-align: center;"> Register a Restaurant</a>
+            <a type = "button" href = "" style="background: #74B72E; color: #fff; font-weight: 700; border-radius: 24px; width: 20%; text-align: center;">Update</a>
+            </center>
+            <br><br>
+
+
+
+  <br>
+
+            <!-- FOR RESTAURANT TABLE -->
+        <div style="width: 80%; margin-left: auto; margin-right: auto; height: 100%;">
+        <table id="tblPCrRecords" class="table table-striped table-bordered" cellspacing="0">
+          <thead>
+            <tr>
+              <th style="background: #008CBA; color: #fff;">Restaurant ID</th>
+              <th style="background: #008CBA; color: #fff;">Restaurant Name</th>
+              <th style="background: #008CBA; color: #fff;">Restaurant Description</th>
+              <th style="background: #008CBA; color: #fff;">Restaurant Contact Number</th>
+              <th style="background: #008CBA; color: #fff;">Restaurant Address ID</th>
+              <th style="background: #008CBA; color: #fff;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for restaurant in restaurants %}
+            <tr>
+              <td style="background: #008CBA; color: #fff;">{{restaurant.Restaurant_ID}}</td>
+              <td style="background: #008CBA; color: #fff;">{{restaurant.Restaurant_Name}}</td>
+              <td style="background: #008CBA; color: #fff;">{{restaurant.Restaurant_Desc}}</td>
+              <td style="background: #008CBA; color: #fff;">{{restaurant.Restaurant_ContactNumber}}</td>
+              <td style="background: #008CBA; color: #fff;">{{restaurant.Address_ID}}</td>
+              <td style="background: #f44336;">
+                <a href="">DELETE</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+
+  </div>
+
+
+<script>
+var ctx = document.getElementById('myChartBar').getContext('2d');
+var myChartBar = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [{%for res in resDesc%}'{{res.Restaurant_Desc}}',{%endfor%}],
+        datasets: [{
+            label: 'Different Types of Restaurants',
+            data: ['{{countCoffee}}','{{countAsian}}','{{countAmerican}}','{{countFilipino}}', '{{countCouple}}'],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+
+    }
+});
+</script>
+
+<script>
+var ctx = document.getElementById('myChartdough').getContext('2d');
+var myChartdough = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: [{%for add in addStreet%}'{{add.Address_City}}',{%endfor%}],
+        datasets: [{
+            label: 'Different Types of Restaurants',
+            data: ['{{countCebu}}','{{countMandaue}}'],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+
+    }
+});
+</script>
+           
+            
+</body>
+
+
+
+{% include "footer.html" %}
+</html>
