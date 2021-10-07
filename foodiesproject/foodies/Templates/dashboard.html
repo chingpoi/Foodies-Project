@@ -122,13 +122,55 @@ var myChartdough = new Chart(ctx, {
 
 
 
-<button class="b" type="button" data-table="1">Table 1</button>
 
-<button class="b" type="button" data-table="2">Table 2</button>
 <center>
+<button class="b" type="button" data-div="1">Users</button>
+<button class="b" type="button" data-div="2">Restaurants</button>
+<button class="b" type="button" data-div="3">Address</button>
+<button class="b" type="button" data-div="4">Food</button>
+<button class="b" type="button" data-div="5">Driver</button>
+<button class="b" type="button" data-div="6">Order</button>
+<button class="b" type="button" data-div="7">Order Item</button>
+<hr>
+
 <div style="border-style: ridge; width:90%; padding-inline: 50px; padding-block: 20px;"> 
 
-<table id="1" class="display" style="width:100%;">
+<div class="tbl" id="1">
+<table id="tbl1" class="display" style="width:100%;">
+<h1>User</h1>
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Password</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+            <td>User</td>
+            <td>Integration Specialist</td>
+            <td>Tokyo</td>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+            <td><button>Jeff</button></td>
+        </tr>
+
+        </tbody>
+
+        
+</table>
+</div>
+
+<div class="tbl" id="2">
+<table id="tbl2" class="display" style="width:100%;">
+<h1>Restaurants</h1>
 
     <thead>
         <tr>
@@ -144,7 +186,7 @@ var myChartdough = new Chart(ctx, {
     <tbody>
         
         <tr>
-            <td>Table 1</td>
+            <td>Restaurants</td>
             <td>Integration Specialist</td>
             <td>Tokyo</td>
             <td>55</td>
@@ -153,11 +195,43 @@ var myChartdough = new Chart(ctx, {
         </tr>
 
         </tbody>
-
-        
 </table>
+</div>
 
-<table id="2" class="display" style="width:100%;">
+<div class="tbl" id="3">
+    <table id="tbl3" class="display" style="width:100%;">
+    <h1>Address</h1>
+    
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>Address</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+                <td>2010/10/14</td>
+                <td>$327,900</td>
+            </tr>
+    
+            </tbody>
+    </table>
+    </div>
+
+    <div class="tbl" id="4">
+<table id="tbl4" class="display" style="width:100%;">
+<h1>Food</h1>
+
     <thead>
         <tr>
             <th>Name</th>
@@ -172,7 +246,7 @@ var myChartdough = new Chart(ctx, {
     <tbody>
         
         <tr>
-            <td>Table 2</td>
+            <td>Food</td>
             <td>Integration Specialist</td>
             <td>Tokyo</td>
             <td>55</td>
@@ -182,6 +256,97 @@ var myChartdough = new Chart(ctx, {
 
         </tbody>
 </table>
+</div>
+
+<div class="tbl" id="5">
+    <table id="tbl5" class="display" style="width:100%;">
+    <h1>Driver</h1>
+    
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>Driver</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+                <td>2010/10/14</td>
+                <td>$327,900</td>
+            </tr>
+    
+            </tbody>
+    </table>
+    </div>
+
+    <div class="tbl" id="6">
+        <table id="tbl6" class="display" style="width:100%;">
+        <h1>Order</h1>
+        
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+        
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>Order</td>
+                    <td>Integration Specialist</td>
+                    <td>Tokyo</td>
+                    <td>55</td>
+                    <td>2010/10/14</td>
+                    <td>$327,900</td>
+                </tr>
+        
+                </tbody>
+        </table>
+        </div>
+
+        <div class="tbl" id="7">
+            <table id="tbl7" class="display" style="width:100%;">
+            <h1>Order Item</h1>
+            
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+            
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Order Item</td>
+                        <td>Integration Specialist</td>
+                        <td>Tokyo</td>
+                        <td>55</td>
+                        <td>2010/10/14</td>
+                        <td>$327,900</td>
+                    </tr>
+            
+                    </tbody>
+            </table>
+            </div>
 </div>
 </center>
 
@@ -206,27 +371,60 @@ crossorigin="anonymous"></script>
 
     (function(){
         
-        var tables = $("table");
-        
+        var tables = $("div.tbl");
         //Grabs all the tables
-        tables.hide().first().show().DataTable();
+        tables.hide().first().show();
         //Hides all the tables except first
-        
         $("button.b").on("click", function(){
             //Adds eventListner to buttons
             tables.hide();
-            DataTable().hide();
             //Hides all the tables
-            var tableTarget = $(this).data("table");
+            var tableTarget = $(this).data("div");
             //Gets data# of button
-            $("table#" + tableTarget).show().DataTable();
+            $("div#" + tableTarget).show();
             //Shows the table with an id equal to data attr of the button
-             
-
             
         })
     })();
     </script>
+    
+    <script>
+        $(document).ready( function () {
+    $('#tbl1').DataTable();
+} );
+    </script>
+
+<script>
+    $(document).ready( function () {
+$('#tbl2').DataTable();
+} );
+</script>
+<script>
+    $(document).ready( function () {
+$('#tbl3').DataTable();
+} );
+</script>
+<script>
+    $(document).ready( function () {
+$('#tbl4').DataTable();
+} );
+</script>
+<script>
+    $(document).ready( function () {
+$('#tbl5').DataTable();
+} );
+</script>
+<script>
+    $(document).ready( function () {
+$('#tbl6').DataTable();
+} );
+</script>
+<script>
+    $(document).ready( function () {
+$('#tbl7').DataTable();
+} );
+</script>
+
 </body>
 
 
