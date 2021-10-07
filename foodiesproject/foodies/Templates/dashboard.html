@@ -150,6 +150,83 @@ var myChartdough = new Chart(ctx, {
     box-shadow: none;
 }
 
+.badd {
+    padding: 12px 25px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #95dab6;
+    border: 2px solid #95dab6;
+    border-radius: 5px;
+    transition: .5s;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.badd:hover {
+    color: #95dab6;
+    background: transparent;
+}
+
+.badd:focus,
+.form-control:focus,
+.custom-select:focus {
+    box-shadow: none;
+}
+
+.bupdate {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #83b2d0;
+    border: 2px solid #83b2d0;
+    border-radius: 5px;
+    transition: .5s;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.bupdate:hover {
+    color: #83b2d0;
+    background: transparent;
+}
+
+.bupdate:focus,
+.form-control:focus,
+.custom-select:focus {
+    box-shadow: none;
+}
+
+.bdelete {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #dc8580;
+    border: 2px solid #dc8580;
+    border-radius: 5px;
+    transition: .5s;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.bdelete:hover {
+    color: #dc8580;
+    background: transparent;
+}
+
+.bdelete:focus,
+.form-control:focus,
+.custom-select:focus {
+    box-shadow: none;
+}
+
 </style>   
 <button class="b" type="button" data-div="1">Users</button>
 <button class="b" type="button" data-div="2">Restaurants</button>
@@ -160,13 +237,17 @@ var myChartdough = new Chart(ctx, {
 <button class="b" type="button" data-div="7">Order Item</button>
 <hr>
 
-<div style="border-style: ridge; width:90%; padding-inline: 50px; padding-block: 20px;"> 
+<div style="border-style: ridge; width:95%; padding-inline: 50px; padding-block: 20px;"> 
 
 <div class="tbl" id="1">
 <table id="tbl1" class="display" style="width:100%;">
 <h1>User</h1>
+<p align="right">
+    <button class="badd" type="button">Add</button>
+  </p>
+
     <thead>
-        <tr>
+        <tr style="text-align: center;">
             <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -179,14 +260,14 @@ var myChartdough = new Chart(ctx, {
     </thead>
     <tbody>
         
-        <tr>
+        <tr style="text-align: center;">
             <td>User</td>
             <td>Integration Specialist</td>
             <td>Tokyo</td>
             <td>55</td>
             <td>2010/10/14</td>
             <td>$327,900</td>
-            <td></td>
+            <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
@@ -198,9 +279,11 @@ var myChartdough = new Chart(ctx, {
 <div class="tbl" id="2">
 <table id="tbl2" class="display" style="width:100%;">
 <h1>Restaurants</h1>
-
+<p align="right">
+    <button class="badd" type="button">Add</button>
+  </p>
     <thead>
-        <tr>
+        <tr style="text-align: center;">
             <th>Name</th>
             <th>Position</th>
             <th>Office</th>
@@ -212,13 +295,13 @@ var myChartdough = new Chart(ctx, {
     </thead>
     <tbody>
         
-        <tr>
+        <tr style="text-align: center;">
             <td>Restaurants</td>
             <td>Integration Specialist</td>
             <td>Tokyo</td>
             <td>55</td>
             <td>2010/10/14</td>
-            <td>$327,900</td>
+            <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
@@ -228,9 +311,11 @@ var myChartdough = new Chart(ctx, {
 <div class="tbl" id="3">
     <table id="tbl3" class="display" style="width:100%;">
     <h1>Address</h1>
-    
+    <p align="right">
+        <button class="badd" type="button">Add</button>
+      </p>
         <thead>
-            <tr>
+            <tr style="text-align: center;">
                 <th>Name</th>
                 <th>Position</th>
                 <th>Office</th>
@@ -242,13 +327,13 @@ var myChartdough = new Chart(ctx, {
         </thead>
         <tbody>
             
-            <tr>
+            <tr style="text-align: center;">
                 <td>Address</td>
                 <td>Integration Specialist</td>
                 <td>Tokyo</td>
                 <td>55</td>
                 <td>2010/10/14</td>
-                <td>$327,900</td>
+                <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
             </tr>
     
             </tbody>
@@ -258,9 +343,11 @@ var myChartdough = new Chart(ctx, {
     <div class="tbl" id="4">
 <table id="tbl4" class="display" style="width:100%;">
 <h1>Food</h1>
-
+<p align="right">
+    <button class="badd" type="button">Add</button>
+  </p>
     <thead>
-        <tr>
+        <tr style="text-align: center;">
             <th>Name</th>
             <th>Position</th>
             <th>Office</th>
@@ -272,13 +359,13 @@ var myChartdough = new Chart(ctx, {
     </thead>
     <tbody>
         
-        <tr>
+        <tr style="text-align: center;">
             <td>Food</td>
             <td>Integration Specialist</td>
             <td>Tokyo</td>
             <td>55</td>
             <td>2010/10/14</td>
-            <td>$327,900</td>
+            <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
@@ -288,9 +375,11 @@ var myChartdough = new Chart(ctx, {
 <div class="tbl" id="5">
     <table id="tbl5" class="display" style="width:100%;">
     <h1>Driver</h1>
-    
+    <p align="right">
+        <button class="badd" type="button">Add</button>
+      </p>
         <thead>
-            <tr>
+            <tr style="text-align: center;">
                 <th>Name</th>
                 <th>Position</th>
                 <th>Office</th>
@@ -302,13 +391,13 @@ var myChartdough = new Chart(ctx, {
         </thead>
         <tbody>
             
-            <tr>
+            <tr style="text-align: center;">
                 <td>Driver</td>
                 <td>Integration Specialist</td>
                 <td>Tokyo</td>
                 <td>55</td>
                 <td>2010/10/14</td>
-                <td>$327,900</td>
+                <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
             </tr>
     
             </tbody>
@@ -318,9 +407,11 @@ var myChartdough = new Chart(ctx, {
     <div class="tbl" id="6">
         <table id="tbl6" class="display" style="width:100%;">
         <h1>Order</h1>
-        
+        <p align="right">
+            <button class="badd" type="button">Add</button>
+          </p>
             <thead>
-                <tr>
+                <tr style="text-align: center;">
                     <th>Name</th>
                     <th>Position</th>
                     <th>Office</th>
@@ -332,13 +423,13 @@ var myChartdough = new Chart(ctx, {
             </thead>
             <tbody>
                 
-                <tr>
+                <tr style="text-align: center;">
                     <td>Order</td>
                     <td>Integration Specialist</td>
                     <td>Tokyo</td>
                     <td>55</td>
                     <td>2010/10/14</td>
-                    <td>$327,900</td>
+                    <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
                 </tr>
         
                 </tbody>
@@ -348,9 +439,11 @@ var myChartdough = new Chart(ctx, {
         <div class="tbl" id="7">
             <table id="tbl7" class="display" style="width:100%;">
             <h1>Order Item</h1>
-            
+            <p align="right">
+                <button class="badd" type="button">Add</button>
+              </p>
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">
                         <th>Name</th>
                         <th>Position</th>
                         <th>Office</th>
@@ -362,13 +455,13 @@ var myChartdough = new Chart(ctx, {
                 </thead>
                 <tbody>
                     
-                    <tr>
+                    <tr style="text-align: center;">
                         <td>Order Item</td>
                         <td>Integration Specialist</td>
                         <td>Tokyo</td>
                         <td>55</td>
                         <td>2010/10/14</td>
-                        <td>$327,900</td>
+                        <td><button class="bupdate" type="button">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
                     </tr>
             
                     </tbody>
