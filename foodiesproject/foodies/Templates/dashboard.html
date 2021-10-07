@@ -119,10 +119,17 @@ var myChartdough = new Chart(ctx, {
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
+
+
+
+<button class="b" type="button" data-table="1">Table 1</button>
+
+<button class="b" type="button" data-table="2">Table 2</button>
 <center>
 <div style="border-style: ridge; width:90%; padding-inline: 50px; padding-block: 20px;"> 
 
-<table id="myTable" class="display" style="width:100%;">
+<table id="1" class="display" style="width:100%;">
+
     <thead>
         <tr>
             <th>Name</th>
@@ -137,7 +144,35 @@ var myChartdough = new Chart(ctx, {
     <tbody>
         
         <tr>
-            <td>Rhona Davidson</td>
+            <td>Table 1</td>
+            <td>Integration Specialist</td>
+            <td>Tokyo</td>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+        </tr>
+
+        </tbody>
+
+        
+</table>
+
+<table id="2" class="display" style="width:100%;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+            <td>Table 2</td>
             <td>Integration Specialist</td>
             <td>Tokyo</td>
             <td>55</td>
@@ -149,7 +184,9 @@ var myChartdough = new Chart(ctx, {
 </table>
 </div>
 </center>
+
 <hr>
+
 <script
 src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -159,11 +196,37 @@ crossorigin="anonymous"></script>
 
 
 <script>
-  $(document).ready( function () {
-$('#myTable').DataTable();
-} );
+    
 </script>
 
+
+
+<script type="text/javascript">//<![CDATA[
+
+
+    (function(){
+        
+        var tables = $("table");
+        
+        //Grabs all the tables
+        tables.hide().first().show().DataTable();
+        //Hides all the tables except first
+        
+        $("button.b").on("click", function(){
+            //Adds eventListner to buttons
+            tables.hide();
+            DataTable().hide();
+            //Hides all the tables
+            var tableTarget = $(this).data("table");
+            //Gets data# of button
+            $("table#" + tableTarget).show().DataTable();
+            //Shows the table with an id equal to data attr of the button
+             
+
+            
+        })
+    })();
+    </script>
 </body>
 
 
