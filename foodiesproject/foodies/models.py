@@ -18,7 +18,8 @@ class User(models.Model):
     User_Password = models.CharField(max_length = 50)
     User_ContactNumber = models.CharField(max_length = 50)
     User_Email = models.EmailField(max_length = 50, unique = True)
-
+    Address_ID = models.ForeignKey(Address, on_delete = models.CASCADE)
+    
     class meta:
         db_table = 'tblUser'
 

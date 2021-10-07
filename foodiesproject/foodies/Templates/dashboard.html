@@ -124,6 +124,33 @@ var myChartdough = new Chart(ctx, {
 
 
 <center>
+<style>
+    .b {
+    padding: 12px 25px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #fbaf32;
+    border: 2px solid #fbaf32;
+    border-radius: 5px;
+    transition: .5s;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.b:hover {
+    color: #fbaf32;
+    background: transparent;
+}
+
+.b:focus,
+.form-control:focus,
+.custom-select:focus {
+    box-shadow: none;
+}
+
+</style>   
 <button class="b" type="button" data-div="1">Users</button>
 <button class="b" type="button" data-div="2">Restaurants</button>
 <button class="b" type="button" data-div="3">Address</button>
@@ -159,7 +186,7 @@ var myChartdough = new Chart(ctx, {
             <td>55</td>
             <td>2010/10/14</td>
             <td>$327,900</td>
-            <td><button>Jeff</button></td>
+            <td></td>
         </tr>
 
         </tbody>
