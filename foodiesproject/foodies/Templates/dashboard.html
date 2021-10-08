@@ -203,15 +203,15 @@ var myChartdough = new Chart(ctx, {
 
 .bdelete {
     font-family: 'Nunito', sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
     color: #ffffff;
     background: #dc8580;
     border: 2px solid #dc8580;
     border-radius: 5px;
     transition: .5s;
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 100px;
+    max-width: 100px;
     min-height: 30px;
     max-height: 30px;
 }
@@ -222,6 +222,60 @@ var myChartdough = new Chart(ctx, {
 }
 
 .bdelete:focus,
+.form-control:focus,
+.custom-select:focus {
+    box-shadow: none;
+}
+
+
+.confirm {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #95dab6;
+    border: 2px solid #95dab6;
+    border-radius: 5px;
+    transition: .5s;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.confirm:hover {
+    color: #95dab6;
+    background: transparent;
+}
+
+.confirm:focus,
+.form-control:focus,
+.custom-select:focus {
+    box-shadow: none;
+}
+
+
+.closex {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #dc8580;
+    border: 2px solid #dc8580;
+    border-radius: 5px;
+    transition: .5s;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.closex:hover {
+    color: #dc8580;
+    background: transparent;
+}
+
+.closex:focus,
 .form-control:focus,
 .custom-select:focus {
     box-shadow: none;
@@ -243,7 +297,7 @@ var myChartdough = new Chart(ctx, {
 <table id="tbl1" class="display" style="width:100%;">
 <h1>User</h1>
 <p align="right">
-    <button class="badd" type="button">Add</button>
+    <button class="badd" data-toggle="modal" data-target="#addUser">Add User</button>
   </p>
 
     <thead>
@@ -280,7 +334,7 @@ var myChartdough = new Chart(ctx, {
 <table id="tbl2" class="display" style="width:100%;">
 <h1>Restaurants</h1>
 <p align="right">
-    <button class="badd" type="button">Add</button>
+    <button class="badd" data-toggle="modal" data-target="#addRestaurant">Add Restaurant</button>
   </p>
     <thead>
         <tr style="text-align: center;">
@@ -312,7 +366,7 @@ var myChartdough = new Chart(ctx, {
     <table id="tbl3" class="display" style="width:100%;">
     <h1>Address</h1>
     <p align="right">
-        <button class="badd" type="button">Add</button>
+        <button class="badd" data-toggle="modal" data-target="#addAddress">Add Address</button>
       </p>
         <thead>
             <tr style="text-align: center;">
@@ -344,7 +398,7 @@ var myChartdough = new Chart(ctx, {
 <table id="tbl4" class="display" style="width:100%;">
 <h1>Food</h1>
 <p align="right">
-    <button class="badd" type="button">Add</button>
+    <button class="badd" data-toggle="modal" data-target="#addFood">Add Food</button>
   </p>
     <thead>
         <tr style="text-align: center;">
@@ -376,7 +430,7 @@ var myChartdough = new Chart(ctx, {
     <table id="tbl5" class="display" style="width:100%;">
     <h1>Driver</h1>
     <p align="right">
-        <button class="badd" type="button">Add</button>
+        <button class="badd" data-toggle="modal" data-target="#addDriver">Add Driver</button>
       </p>
         <thead>
             <tr style="text-align: center;">
@@ -408,7 +462,7 @@ var myChartdough = new Chart(ctx, {
         <table id="tbl6" class="display" style="width:100%;">
         <h1>Order</h1>
         <p align="right">
-            <button class="badd" type="button">Add</button>
+            <button class="badd" data-toggle="modal" data-target="#addOrder">Add Order</button>
           </p>
             <thead>
                 <tr style="text-align: center;">
@@ -440,7 +494,7 @@ var myChartdough = new Chart(ctx, {
             <table id="tbl7" class="display" style="width:100%;">
             <h1>Order Item</h1>
             <p align="right">
-                <button class="badd" type="button">Add</button>
+                <button class="badd" data-toggle="modal" data-target="#addOrderItem">Add Order Item</button>
               </p>
                 <thead>
                     <tr style="text-align: center;">
@@ -469,6 +523,458 @@ var myChartdough = new Chart(ctx, {
             </div>
 </div>
 </center>
+
+
+
+<!-- Modal -->
+
+<style>
+    
+
+
+.title1 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+
+
+.input1-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.input1 {
+  background-color: #eee;
+  border-radius: 12px;
+  border-style: ridge;
+  border: 0;
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+
+.cut {
+ 
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 76px;
+}
+
+.cut-short {
+  width: 50px;
+}
+
+.input1:focus ~ .cut,
+.input1:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.placeholder {
+  color: #65657b;
+  font-family: sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.input1:focus ~ .placeholder,
+.input1:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input1:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input1:focus ~ .placeholder {
+  color: #dc2f55;
+}
+
+.submit1:active {
+  background-color: #06b;
+}
+
+</style>
+
+<!-- Modal User -->
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">User</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal User -->
+
+<!-- Modal Restaurant -->
+<div class="modal fade" id="addRestaurant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Restaurant</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">Restaurant</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal Restaurant -->
+
+<!-- Modal Address -->
+<div class="modal fade" id="addAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Address</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">Address</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal Address -->
+
+<!-- Modal Food -->
+<div class="modal fade" id="addFood" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Food</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">Food</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal Food -->
+
+<!-- Modal Driver -->
+<div class="modal fade" id="addDriver" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Driver</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">Driver</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal Driver -->
+
+<!-- Modal Order -->
+<div class="modal fade" id="addOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Order</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">Order</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal Order -->
+
+<!-- Modal Order Item -->
+<div class="modal fade" id="addOrderItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #fbaf32;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Order Item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" action="#">
+         
+            <div class="form1">
+                <div class="title1">Order Item</div>
+                <hr>
+
+
+                <div class="input1-container ic2">
+                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</label>
+                </div>
+
+                
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button type="submit" class="confirm">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Modal Order Item -->
+
+
+
+
 
 <hr>
 
