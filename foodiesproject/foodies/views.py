@@ -65,6 +65,23 @@ class DashboardView(View):
 		}
 		return render(request,'dashboard.html', context)
 
+	def get(self,request):
+		user = User.objects.all()
+		address = Address.objects.all()
+		food = Food.objects.all()
+		driver = Driver.objects.all()
+		order = Order.objects.all()
+		orderItem = OrderItem.objects.all()
+		context = {
+			'user': user,
+			'address': address,
+			'food': food,
+			'driver': driver,
+			'order': order,
+			'orderItem': orderItem,
+		}
+		return render(request,'dashboard.html', context)
+
 def AddUser(request):
 	if request.method == "POST":
 		form = UserForm(request.POST)

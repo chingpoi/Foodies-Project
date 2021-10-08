@@ -333,6 +333,7 @@ var myChartdough = new Chart(ctx, {
             <th>Password</th>
             <th>Contact Number</th>
             <th>Email</th>
+            <th>Address</th>
             <th>Action</th>
 
         </tr>
@@ -340,17 +341,19 @@ var myChartdough = new Chart(ctx, {
     <tbody>
         
         <tr style="text-align: center;">
-            <td>User</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>55</td>
-            <td>2010/10/14</td>
-            <td>$327,900</td>
+          {% for u in user %}
+            <td>{{u.User_ID}}</td>
+            <td>{{u.User_FirstName}}</td>
+            <td>{{u.User_LastName}}</td>
+            <td>{{u.User_Password}}</td>
+            <td>{{u.User_ContactNumber}}</td>
+            <td>{{u.User_Email}}</td>
+            <td>{{u.Address_ID}}</td>
             <td><button class="bupdate" data-toggle="modal" data-target="#updateUser">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
-
+        {% endfor %}
         
 </table>
 </div>
