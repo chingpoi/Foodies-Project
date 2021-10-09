@@ -58,7 +58,7 @@ class Order(models.Model):
     Order_ID = models.AutoField(auto_created = True, primary_key = True)
     User_ID = models.ForeignKey(User, on_delete = models.CASCADE)
     Order_Type = models.CharField(max_length = 50)
-    Driver_ID = models.ForeignKey(Driver, on_delete = models.CASCADE, null = True)
+    Driver_ID = models.ForeignKey(Driver, on_delete = models.CASCADE, null = True, blank=True)
     Order_TotalCost = models.IntegerField()
     Date = models.CharField(max_length = 10)
     Time = models.CharField(max_length = 10)
