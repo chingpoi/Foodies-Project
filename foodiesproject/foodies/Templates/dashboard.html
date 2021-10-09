@@ -339,9 +339,8 @@ var myChartdough = new Chart(ctx, {
         </tr>
     </thead>
     <tbody>
-        
+      {% for u in user %}
         <tr style="text-align: center;">
-          {% for u in user %}
             <td>{{u.User_ID}}</td>
             <td>{{u.User_FirstName}}</td>
             <td>{{u.User_LastName}}</td>
@@ -351,9 +350,9 @@ var myChartdough = new Chart(ctx, {
             <td>{{u.Address_ID}}</td>
             <td><button class="bupdate" data-toggle="modal" data-target="#updateUser">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
         </tr>
-
-        </tbody>
         {% endfor %}
+        </tbody>
+        
         
 </table>
 </div>
@@ -375,9 +374,9 @@ var myChartdough = new Chart(ctx, {
         </tr>
     </thead>
     <tbody>
-        
+      {% for r in restaurants %}
         <tr style="text-align: center;">
-          {% for r in restaurants %}
+          
             <td>{{r.Restaurant_ID}}</td>
             <td>{{r.Restaurant_Name}}</td>
             <td>{{r.Restaurant_Desc}}</td>
@@ -385,9 +384,9 @@ var myChartdough = new Chart(ctx, {
             <td>{{r.Address_ID}}</td>
             <td><button class="bupdate" data-toggle="modal" data-target="#updateRestaurant">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
         </tr>
-
-        </tbody>
         {% endfor %}
+        </tbody>
+        
 </table>
 </div>
 
@@ -408,18 +407,18 @@ var myChartdough = new Chart(ctx, {
             </tr>
         </thead>
         <tbody>
-            
+          {% for a in address %}
             <tr style="text-align: center;">
-              {% for a in address %}
+              
               <td>{{a.Address_ID}}</td>
               <td>{{a.Address_Province}}</td>
               <td>{{a.Address_City}}</td>
               <td>{{a.Address_Street}}</td>
                 <td><button class="bupdate" data-toggle="modal" data-target="#updateAddress">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
             </tr>
-    
-            </tbody>
             {% endfor %}
+            </tbody>
+            
     </table>
     </div>
 
@@ -441,9 +440,9 @@ var myChartdough = new Chart(ctx, {
         </tr>
     </thead>
     <tbody>
-        
+      {% for f in food %}
         <tr style="text-align: center;">
-          {% for f in food %}
+          
           <td>{{f.Food_ID}}</td>
           <td>{{f.Restaurant_ID}}</td>
           <td>{{f.Food_Name}}</td>
@@ -451,9 +450,9 @@ var myChartdough = new Chart(ctx, {
           <td>{{f.Food_Price}}</td>
             <td><button class="bupdate" data-toggle="modal" data-target="#updateFood">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
         </tr>
-
-        </tbody>
         {% endfor %}
+        </tbody>
+        
 </table>
 </div>
 
@@ -476,9 +475,9 @@ var myChartdough = new Chart(ctx, {
             </tr>
         </thead>
         <tbody>
-            
+          {% for d in driver %}
             <tr style="text-align: center;">
-              {% for d in driver %}
+              
               <td>{{d.Driver_ID}}</td>
               <td>{{d.Driver_FirstName}}</td>
               <td>{{d.Driver_LastName}}</td>
@@ -487,9 +486,9 @@ var myChartdough = new Chart(ctx, {
               <td>{{d.Driver_ContactNumber}}</td>
                 <td><button class="bupdate" data-toggle="modal" data-target="#updateDriver">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
             </tr>
-    
-            </tbody>
             {% endfor %}
+            </tbody>
+            
     </table>
     </div>
 
@@ -513,9 +512,9 @@ var myChartdough = new Chart(ctx, {
                 </tr>
             </thead>
             <tbody>
-                
+              {% for o in order %}
                 <tr style="text-align: center;">
-                  {% for o in order %}
+                  
                   <td>{{o.Order_ID}}</td>
                   <td>{{o.User_ID}}</td>
                   <td>{{o.Order_Type}}</td>
@@ -525,9 +524,9 @@ var myChartdough = new Chart(ctx, {
                   <td>{{o.Time}}</td>
                     <td><button class="bupdate" data-toggle="modal" data-target="#updateOrder">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
                 </tr>
-        
-                </tbody>
                 {% endfor %}
+                </tbody>
+                
         </table>
         </div>
 
@@ -549,9 +548,9 @@ var myChartdough = new Chart(ctx, {
                     </tr>
                 </thead>
                 <tbody>
-                    
+                  {% for oi in orderItem %}
                     <tr style="text-align: center;">
-                      {% for oi in orderItem %}
+                      
                       <td>{{oi.OrderItem_ID}}</td>
                       <td>{{oi.Order_ID}}</td>
                       <td>{{oi.Food_ID}}</td>
@@ -559,9 +558,9 @@ var myChartdough = new Chart(ctx, {
                       <td>{{oi.Cost}}</td>
                         <td><button class="bupdate" data-toggle="modal" data-target="#updateOrderItem">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
                     </tr>
-            
-                    </tbody>
                     {% endfor %}
+                    </tbody>
+                    
             </table>
             </div>
 </div>
@@ -698,7 +697,7 @@ var myChartdough = new Chart(ctx, {
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="User_Password" name="User_Password" class="input1" type="text" placeholder=" " required/>
+                  <input id="User_Password" name="User_Password" class="input1" type="password" placeholder=" " required/>
                   <div class="cut"></div>
                   <label for="User_Password" class="placeholder">Password</label>
                 </div>
@@ -847,29 +846,34 @@ var myChartdough = new Chart(ctx, {
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" action="#">
-         
+          <form method="POST" action="{% url 'foodies:foodAdd' %}">
+            {% csrf_token %}
             <div class="form1">
                 <div class="title1">Food</div>
                 <hr>
 
-
                 <div class="input1-container ic2">
-                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="firstname" class="placeholder">First name</label>
+                  <label for="Restaurant_ID" class="placeholder">Restaurant ID</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                  <div class="cut"></div>
-                  <label for="lastname" class="placeholder">Last name</label>
-                </div>
-
-                <div class="input1-container ic2">
-                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <input id="Food_Name" name="Food_Name" class="input1" type="text" placeholder=" " required/>
                   <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</label>
+                  <label for="Food_Name" class="placeholder">Food Name</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Food_Desc" name="Food_Desc" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Food_Desc" class="placeholder">Food Desc</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Food_Price" name="Food_Price" class="input1" type="number" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Food_Price" class="placeholder">Food Price</label>
                 </div>
 
                 
@@ -897,29 +901,41 @@ var myChartdough = new Chart(ctx, {
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" action="#">
-         
+          <form method="POST" action="{% url 'foodies:driverAdd' %}">
+            {% csrf_token %}
             <div class="form1">
                 <div class="title1">Driver</div>
                 <hr>
 
 
                 <div class="input1-container ic2">
-                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Driver_FirstName" name="Driver_FirstName" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="firstname" class="placeholder">First name</label>
+                  <label for="Driver_FirstName" class="placeholder">Driver First Name</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Driver_LastName" name="Driver_LastName" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="lastname" class="placeholder">Last name</label>
+                  <label for="Driver_LastName" class="placeholder">Driver Last Name</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <input id="Driver_Email" name="Driver_Email" class="input1" type="email" placeholder=" " required/>
                   <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</label>
+                  <label for="Driver_Email" class="placeholder">Driver Email</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Address_ID" class="placeholder">Address ID</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Driver_ContactNumber" name="Driver_ContactNumber" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Driver_ContactNumber" class="placeholder">Driver Contact Number</label>
                 </div>
 
                 
@@ -947,29 +963,47 @@ var myChartdough = new Chart(ctx, {
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" action="#">
-         
+          <form method="POST" action="{% url 'foodies:orderAdd' %}">
+            {% csrf_token %}
             <div class="form1">
                 <div class="title1">Order</div>
                 <hr>
 
 
                 <div class="input1-container ic2">
-                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <input id="User_ID" name="User_ID" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="firstname" class="placeholder">First name</label>
+                  <label for="User_ID" class="placeholder">User ID</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Order_Type" name="Order_Type" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="lastname" class="placeholder">Last name</label>
+                  <label for="Order_Type" class="placeholder">Order Type</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <input id="Driver_ID" name="Driver_ID" class="input1" type="text" placeholder=" "/>
                   <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</label>
+                  <label for="Driver_ID" class="placeholder">Driver ID</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Order_TotalCost" name="Order_TotalCost" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Order_TotalCost" class="placeholder">Order Total Cost</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Date" name="Date" class="input1" type="Date" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Date" class="placeholder">Date</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Time" name="Time" class="input1" type="Time" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Time" class="placeholder">Time</label>
                 </div>
 
                 
@@ -997,29 +1031,35 @@ var myChartdough = new Chart(ctx, {
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" action="#">
-         
+          <form method="POST" action="{% url 'foodies:orderItemAdd' %}">
+            {% csrf_token %}
             <div class="form1">
                 <div class="title1">Order Item</div>
                 <hr>
 
 
                 <div class="input1-container ic2">
-                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Order_ID" name="Order_ID" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="firstname" class="placeholder">First name</label>
+                  <label for="Order_ID" class="placeholder">Order ID</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Food_ID" name="Food_ID" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="lastname" class="placeholder">Last name</label>
+                  <label for="Food_ID" class="placeholder">Food ID</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <input id="Quantity" name="Quantity" class="input1" type="number" placeholder=" " required/>
                   <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</label>
+                  <label for="Quantity" class="placeholder">Quantity</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Cost" name="Cost" class="input1" type="number" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Cost" class="placeholder">Cost</label>
                 </div>
 
                 

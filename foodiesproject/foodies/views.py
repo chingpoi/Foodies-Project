@@ -131,6 +131,113 @@ class DashboardView(View):
 				print(form.errors)
 				return HttpResponse('not valid')
 
+	#FOR FOOD
+	def AddFood(request):
+		if request.method == "POST":
+			form = FoodForm(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN RESTAURANT ATTRIBUTES
+				bRestaurant = request.POST.get("Restaurant_ID")
+				uRestaurant = Restaurant.objects.get(Restaurant_ID = bRestaurant)
+
+				#PRIMARY FOOD ATTRIBUTES
+				fName = request.POST.get("Food_Name")
+				fDesc = request.POST.get("Food_Desc")
+				fPrice = int(request.POST.get("Food_Price"))
+
+				form = Food(Restaurant_ID = uRestaurant, Food_Name = fName, Food_Desc = fDesc, Food_Price = fPrice)
+				form.save()
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
+
+	#FOR DRIVER
+	def AddDriver(request):
+		if request.method == "POST":
+			form = DriverForm(request.POST)
+			
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN DRIVER ATTRIBUTES
+				bAddress = request.POST.get("Address_ID")
+				uAddress = Address.objects.get(Address_ID = bAddress)
+
+				#PRIMARY DRIVER ATTRIBUTES
+				dFname = request.POST.get("Driver_FirstName")
+				dLname = request.POST.get("Driver_LastName")
+				dEmail = request.POST.get("Driver_Email")
+				dContactNumber = request.POST.get("Driver_ContactNumber")
+
+				
+				form = Driver(Driver_FirstName = dFname, Driver_LastName = dLname, Driver_Email = dEmail, Address_ID = uAddress, Driver_ContactNumber = dContactNumber)
+				form.save()
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
+	#FOR ORDER
+	def AddOrder(request):
+		if request.method == "POST":
+			form = OrderForm(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN ORDER ATTRIBUTES
+				bID = request.POST.get("User_ID")
+				uID = User.objects.get(User_ID = bID)
+
+				bDriverID = request.POST.get("Driver_ID")
+				if (bDriverID):
+					uDriverID = Driver.objects.get(Driver_ID = bDriverID)
+				else:
+					uDriverID = None
+					
+					
+				
+
+				#PRIMARY FOOD ATTRIBUTES
+				oType = request.POST.get("Order_Type")
+				oTotalCost = int(request.POST.get("Order_TotalCost"))
+				Date = request.POST.get("Date")
+				Time = request.POST.get("Time")
+
+				form = Order(User_ID = uID, Order_Type = oType, Driver_ID = uDriverID, Order_TotalCost = oTotalCost, Date = Date, Time = Time)
+				form.save()
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
+	#FOR OrderItem
+	def AddOrderItem(request):
+		if request.method == "POST":
+			form = OrderItemForm(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN ORDER ITEM ATTRIBUTES
+				bOrderID = request.POST.get("Order_ID")
+				uOrderID = Order.objects.get(Order_ID = bOrderID)
+
+				bFoodID = request.POST.get("Food_ID")
+				uFoodID = Food.objects.get(Food_ID = bFoodID)
+				
+
+				#PRIMARY FOOD ATTRIBUTES
+				quantity = int(request.POST.get("Quantity"))
+				cost = int(request.POST.get("Cost"))
+
+				form = OrderItem(Order_ID = uOrderID, Food_ID = uFoodID, Quantity = quantity, Cost = cost)
+				form.save()
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')				
 
 
 
