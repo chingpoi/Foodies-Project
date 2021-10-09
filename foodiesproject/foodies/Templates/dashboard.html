@@ -184,8 +184,8 @@ var myChartdough = new Chart(ctx, {
     border: 2px solid #83b2d0;
     border-radius: 5px;
     transition: .5s;
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 100px;
+    max-width: 100px;
     min-height: 30px;
     max-height: 30px;
 }
@@ -349,7 +349,7 @@ var myChartdough = new Chart(ctx, {
             <td>{{u.User_ContactNumber}}</td>
             <td>{{u.User_Email}}</td>
             <td>{{u.Address_ID}}</td>
-            <td><button class="bupdate" data-toggle="modal" data-target="#updateUser">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+            <td><button class="bupdate" data-toggle="modal" data-target="#updateUser">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
@@ -366,27 +366,28 @@ var myChartdough = new Chart(ctx, {
   </p>
     <thead>
         <tr style="text-align: center;">
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-
+          <th>Restaurant_ID</th>
+          <th>Restaurant_Name</th>
+          <th>Restaurant_Desc</th>
+          <th>Restaurant_ContactNumber</th>
+          <th>Address_ID</th>
+          <th>Action</th>
         </tr>
     </thead>
     <tbody>
         
         <tr style="text-align: center;">
-            <td>Restaurants</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>55</td>
-            <td>2010/10/14</td>
-            <td><button class="bupdate" data-toggle="modal" data-target="#updateRestaurant">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+          {% for r in restaurants %}
+            <td>{{r.Restaurant_ID}}</td>
+            <td>{{r.Restaurant_Name}}</td>
+            <td>{{r.Restaurant_Desc}}</td>
+            <td>{{r.Restaurant_ContactNumber}}</td>
+            <td>{{r.Address_ID}}</td>
+            <td><button class="bupdate" data-toggle="modal" data-target="#updateRestaurant">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
+        {% endfor %}
 </table>
 </div>
 
@@ -398,27 +399,27 @@ var myChartdough = new Chart(ctx, {
       </p>
         <thead>
             <tr style="text-align: center;">
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+              <th>Address_ID</th>
+              <th>Address_Province</th>
+              <th>Address_City</th>
+              <th>Address_Street</th>
+              <th>Action</th>
     
             </tr>
         </thead>
         <tbody>
             
             <tr style="text-align: center;">
-                <td>Address</td>
-                <td>Integration Specialist</td>
-                <td>Tokyo</td>
-                <td>55</td>
-                <td>2010/10/14</td>
-                <td><button class="bupdate" data-toggle="modal" data-target="#updateAddress">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+              {% for a in address %}
+              <td>{{a.Address_ID}}</td>
+              <td>{{a.Address_Province}}</td>
+              <td>{{a.Address_City}}</td>
+              <td>{{a.Address_Street}}</td>
+                <td><button class="bupdate" data-toggle="modal" data-target="#updateAddress">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
             </tr>
     
             </tbody>
+            {% endfor %}
     </table>
     </div>
 
@@ -430,27 +431,29 @@ var myChartdough = new Chart(ctx, {
   </p>
     <thead>
         <tr style="text-align: center;">
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
+          <th>Food_ID</th>
+          <th>Restaurant_ID</th>
+          <th>Food_Name</th>
+          <th>Food_Desc</th>
+          <th>Food_Price</th>
+          <th>Action</th>
 
         </tr>
     </thead>
     <tbody>
         
         <tr style="text-align: center;">
-            <td>Food</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>55</td>
-            <td>2010/10/14</td>
-            <td><button class="bupdate" data-toggle="modal" data-target="#updateFood">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+          {% for f in food %}
+          <td>{{f.Food_ID}}</td>
+          <td>{{f.Restaurant_ID}}</td>
+          <td>{{f.Food_Name}}</td>
+          <td>{{f.Food_Desc}}</td>
+          <td>{{f.Food_Price}}</td>
+            <td><button class="bupdate" data-toggle="modal" data-target="#updateFood">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
         </tr>
 
         </tbody>
+        {% endfor %}
 </table>
 </div>
 
@@ -462,27 +465,31 @@ var myChartdough = new Chart(ctx, {
       </p>
         <thead>
             <tr style="text-align: center;">
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Driver_ID</th>
+                <th>Driver_FirstName</th>
+                <th>Driver_LastName</th>
+                <th>Driver_Email</th>
+                <th>Address_ID</th>
+                <th>Driver_ContactNumber</th>
+                <th>Action</th>
     
             </tr>
         </thead>
         <tbody>
             
             <tr style="text-align: center;">
-                <td>Driver</td>
-                <td>Integration Specialist</td>
-                <td>Tokyo</td>
-                <td>55</td>
-                <td>2010/10/14</td>
-                <td><button class="bupdate" data-toggle="modal" data-target="#updateDriver">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+              {% for d in driver %}
+              <td>{{d.Driver_ID}}</td>
+              <td>{{d.Driver_FirstName}}</td>
+              <td>{{d.Driver_LastName}}</td>
+              <td>{{d.Driver_Email}}</td>
+              <td>{{d.Address_ID}}</td>
+              <td>{{d.Driver_ContactNumber}}</td>
+                <td><button class="bupdate" data-toggle="modal" data-target="#updateDriver">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
             </tr>
     
             </tbody>
+            {% endfor %}
     </table>
     </div>
 
@@ -494,27 +501,33 @@ var myChartdough = new Chart(ctx, {
           </p>
             <thead>
                 <tr style="text-align: center;">
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Order_ID</th>
+                    <th>User_ID</th>
+                    <th>Order_Type</th>
+                    <th>Driver_ID</th>
+                    <th>Order_TotalCost</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
         
                 </tr>
             </thead>
             <tbody>
                 
                 <tr style="text-align: center;">
-                    <td>Order</td>
-                    <td>Integration Specialist</td>
-                    <td>Tokyo</td>
-                    <td>55</td>
-                    <td>2010/10/14</td>
-                    <td><button class="bupdate" data-toggle="modal" data-target="#updateOrder">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+                  {% for o in order %}
+                  <td>{{o.Order_ID}}</td>
+                  <td>{{o.User_ID}}</td>
+                  <td>{{o.Order_Type}}</td>
+                  <td>{{o.Driver_ID}}</td>
+                  <td>{{o.Order_TotalCost}}</td>
+                  <td>{{o.Date}}</td>
+                  <td>{{o.Time}}</td>
+                    <td><button class="bupdate" data-toggle="modal" data-target="#updateOrder">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
                 </tr>
         
                 </tbody>
+                {% endfor %}
         </table>
         </div>
 
@@ -526,27 +539,29 @@ var myChartdough = new Chart(ctx, {
               </p>
                 <thead>
                     <tr style="text-align: center;">
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>OrderItem_ID</th>
+                        <th>Order_ID</th>
+                        <th>Food_ID</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        <th>Action</th>
             
                     </tr>
                 </thead>
                 <tbody>
                     
                     <tr style="text-align: center;">
-                        <td>Order Item</td>
-                        <td>Integration Specialist</td>
-                        <td>Tokyo</td>
-                        <td>55</td>
-                        <td>2010/10/14</td>
-                        <td><button class="bupdate" data-toggle="modal" data-target="#updateOrderItem">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="bdelete" type="button">Delete</button></td>
+                      {% for oi in orderItem %}
+                      <td>{{oi.OrderItem_ID}}</td>
+                      <td>{{oi.Order_ID}}</td>
+                      <td>{{oi.Food_ID}}</td>
+                      <td>{{oi.Quantity}}</td>
+                      <td>{{oi.Cost}}</td>
+                        <td><button class="bupdate" data-toggle="modal" data-target="#updateOrderItem">Update</button><hr><button class="bdelete" type="button">Delete</button></td>
                     </tr>
             
                     </tbody>
+                    {% endfor %}
             </table>
             </div>
 </div>

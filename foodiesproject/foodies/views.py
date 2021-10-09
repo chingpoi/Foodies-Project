@@ -67,6 +67,7 @@ class DashboardView(View):
 
 	def get(self,request):
 		user = User.objects.all()
+		restaurants = Restaurant.objects.all()
 		address = Address.objects.all()
 		food = Food.objects.all()
 		driver = Driver.objects.all()
@@ -74,6 +75,7 @@ class DashboardView(View):
 		orderItem = OrderItem.objects.all()
 		context = {
 			'user': user,
+			'restaurants': restaurants,
 			'address': address,
 			'food': food,
 			'driver': driver,
