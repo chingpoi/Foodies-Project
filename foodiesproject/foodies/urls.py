@@ -13,6 +13,7 @@ urlpatterns = [
     path('createDriver', views.DashboardView.AddDriver, name="driverAdd"),
     path('createOrder', views.DashboardView.AddOrder, name="orderAdd"),
     path('createOrderItem', views.DashboardView.AddOrderItem, name="orderItemAdd"),
+    #path('updateUser', views.DashboardView.updateUser, name="userUpdate"),
     path('resRegister/', views.RestaurantRegisterView.as_view(), name = "resRegister_view"),
-    path('createRestaurant', views.RestaurantRegisterView.AddRestaurant, name = "resAdd"),
+    path('createRestaurant', views.DashboardView.AddRestaurant, name = "resAdd"),
 ]

@@ -136,7 +136,7 @@
 
 </div>
 
-<!-- Delete Modal HTML -->
+<!-- Delete Modal HTML
 <div id="deleteModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">
@@ -148,7 +148,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Do you really want to delete these records? This process cannot be undone.</p>
+				<p>Do you really want to delete? This process cannot be undone.</p>
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -157,7 +157,7 @@
 		</div>
 	</div>
 </div>     
-
+-->
 
 
  
@@ -167,10 +167,10 @@ var ctx = document.getElementById('myChartBar').getContext('2d');
 var myChartBar = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: [{%for res in resDesc%}'{{res.Restaurant_Desc}}',{%endfor%}],
+        labels: ["{%for res in resDesc%}'{{res.Restaurant_Desc}}',{%endfor%}"],
         datasets: [{
             label: 'Different Types of Restaurants',
-            data: ['{{countCoffee}}','{{countAsian}}','{{countAmerican}}','{{countFilipino}}', '{{countCouple}}'],
+            data: ["{{countCoffee}}","{{countAsian}}","{{countAmerican}}","{{countFilipino}}","{{countCouple}}"],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -206,7 +206,7 @@ var ctx = document.getElementById('myChartdough').getContext('2d');
 var myChartdough = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: [{%for add in addStreet%}'{{add.Address_City}}',{%endfor%}],
+        labels: ["{%for add in addStreet%}'{{add.Address_City}}',{%endfor%}"],
         datasets: [{
             label: 'Different Types of Restaurants',
             data: ['{{countCebu}}','{{countMandaue}}'],
@@ -443,6 +443,7 @@ var myChartdough = new Chart(ctx, {
 
 <div style="border-style: ridge; width:95%; padding-inline: 50px; padding-block: 20px;"> 
 
+<!--USERS TABLE-->
 <div class="tbl" id="1">
 <table id="tbl1" class="display" style="width:100%;">
 <h1>User</h1>
@@ -473,8 +474,107 @@ var myChartdough = new Chart(ctx, {
             <td>{{u.User_ContactNumber}}</td>
             <td>{{u.User_Email}}</td>
             <td>{{u.Address_ID}}</td>
-            <td><button class="bupdate" data-toggle="modal" data-target="#updateUser">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+            <td><button class="bupdate" data-toggle="modal" data-target="#updateUser-{{u.User_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" data-target="#deleteUser-{{u.User_ID}}">Delete</button></td>
         </tr>
+
+        <!--UPDATE USER MODAL-->
+        <div class="modal fade" id="updateUser-{{u.User_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #83b2d0;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <center>
+                <form method="POST" id = "updateUser">
+                  {% csrf_token %}
+                  <div class="form1">
+                      <div class="title1">User</div>
+                      <hr>
+        
+                      
+                      <div class="input1-container ic2">
+                        <input id="User_ID" name="User_ID" class="input1" type="text" value="{{u.User_ID}}" readonly/>
+                        <div class="cut"></div>
+                        
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="User_FirstName" name="User_FirstName" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="User_FirstName" class="placeholder">{{u.User_FirstName}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="User_LastName" name="User_LastName" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="User_LastName" class="placeholder">{{u.User_LastName}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="User_Password" name="User_Password" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="User_Password" class="placeholder">{{u.User_Password}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="User_ContactNumber" name="User_ContactNumber" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="User_ContactNumber" class="placeholder">{{u.User_ContactNumber}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="User_Email" name="User_Email" class="input1" type="email" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="User_Email" class="placeholder">{{u.User_Email}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Address_ID" class="placeholder">{{u.Address_ID}}</label>
+                      </div>
+                      
+                      
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="closex" data-dismiss="modal">Close</button>
+                <button id = "btnUpdateUser" name="btnUpdateUser" type="submit" class="confirmx">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </form>
+        <!--DELETE USER MODAL-->
+        <div id="deleteUser-{{u.User_ID}}" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>						
+                <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <form method="POST" id = "deleteUser">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" class="form-control" id ="User_ID" name="User_ID" value="{{u.User_ID}}" hidden>
+                  <p>Do you really want the data of User no. {{u.User_ID}}: {{u.User_FirstName}}? This process cannot be undone.</p>
+                </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="btnDeleteUser" name ="btnDeleteUser" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
         {% endfor %}
         </tbody>
         
@@ -482,6 +582,7 @@ var myChartdough = new Chart(ctx, {
 </table>
 </div>
 
+<!--RESTAURANTS TABLE-->
 <div class="tbl" id="2">
 <table id="tbl2" class="display" style="width:100%;">
 <h1>Restaurants</h1>
@@ -507,14 +608,103 @@ var myChartdough = new Chart(ctx, {
             <td>{{r.Restaurant_Desc}}</td>
             <td>{{r.Restaurant_ContactNumber}}</td>
             <td>{{r.Address_ID}}</td>
-            <td><button class="bupdate" data-toggle="modal" data-target="#updateRestaurant">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+            <td><button class="bupdate" data-toggle="modal" data-target="#updateRestaurant-{{r.Restaurant_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteRestaurant-{{r.Restaurant_ID}}">Delete</button></td>
         </tr>
+
+        <!--UPDATE RESTAURANT MODAL-->
+        <div class="modal fade" id="updateRestaurant-{{r.Restaurant_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #83b2d0;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Restaurant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <center>
+                <form method="POST" id = "updateRestaurant">
+                  {% csrf_token %}
+                  <div class="form1">
+                      <div class="title1">Restaurant</div>
+                      <hr>
+        
+                      
+                      <div class="input1-container ic2">
+                        <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="text" value="{{r.Restaurant_ID}}" readonly/>
+                        <div class="cut"></div>
+                        
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Restaurant_Name" name="Restaurant_Name" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="Restaurant_Name" class="placeholder">{{r.Restaurant_Name}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Restaurant_Desc" name="Restaurant_Desc" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Restaurant_Desc" class="placeholder">{{r.Restaurant_Desc}}</label>
+                      </div>
+        
+        
+                      <div class="input1-container ic2">
+                        <input id="Restaurant_ContactNumber" name="Restaurant_ContactNumber" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Restaurant_ContactNumber" class="placeholder">{{r.Restaurant_ContactNumber}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Address_ID" class="placeholder">{{r.Address_ID}}</label>
+                      </div>
+                      
+                      
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="closex" data-dismiss="modal">Close</button>
+                <button id = "btnUpdateRestaurant" name="btnUpdateRestaurant" type="submit" class="confirmx">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </form>
+        <!--DELETE RESTAURANT MODAL-->
+        <div id="deleteRestaurant-{{r.Restaurant_ID}}" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>						
+                <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <form method="POST" id = "deleteRestaurant">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" class="form-control" id ="Restaurant_ID" name="Restaurant_ID" value="{{r.Restaurant_ID}}" hidden>
+                  <p>Do you really want the data of Restaurant no. {{r.Restaurant_ID}}: {{r.Restaurant_Name}}? This process cannot be undone.</p>
+                </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="btnDeleteRestaurant" name ="btnDeleteRestaurant" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
         {% endfor %}
         </tbody>
         
 </table>
 </div>
 
+<!-- ADDRESS TABLE -->
 <div class="tbl" id="3">
     <table id="tbl3" class="display" style="width:100%;">
     <h1>Address</h1>
@@ -539,15 +729,100 @@ var myChartdough = new Chart(ctx, {
               <td>{{a.Address_Province}}</td>
               <td>{{a.Address_City}}</td>
               <td>{{a.Address_Street}}</td>
-                <td><button class="bupdate" data-toggle="modal" data-target="#updateAddress">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+                <td><button class="bupdate" data-toggle="modal" data-target="#updateAddress-{{a.Address_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteAddress-{{a.Address_ID}}">Delete</button></td>
             </tr>
+
+            <!--UPDATE RESTAURANT MODAL-->
+            <div class="modal fade" id="updateAddress-{{a.Address_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header" style="background-color: #83b2d0;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <center>
+                    <form method="POST" id = "updateAddress">
+                      {% csrf_token %}
+                      <div class="form1">
+                          <div class="title1">Address</div>
+                          <hr>
+            
+                          
+                          <div class="input1-container ic2">
+                            <input id="Address_ID" name="Address_ID" class="input1" type="text" value="{{a.Address_ID}}" readonly/>
+                            <div class="cut"></div>
+                            
+                          </div>
+            
+                          <div class="input1-container ic2">
+                            <input id="Address_Province" name="Address_Province" class="input1" type="text" placeholder=" " required/>
+                            <div class="cut"></div>
+                            <label for="Address_Province" class="placeholder">{{a.Address_Province}}</label>
+                          </div>
+            
+                          <div class="input1-container ic2">
+                            <input id="Address_City" name="Address_City" class="input1" type="text" placeholder=" " required/>
+                            <div class="cut cut-short"></div>
+                            <label for="Address_City" class="placeholder">{{a.Address_City}}</label>
+                          </div>
+            
+            
+                          <div class="input1-container ic2">
+                            <input id="Address_Street" name="Address_Street" class="input1" type="text" placeholder=" " required/>
+                            <div class="cut cut-short"></div>
+                            <label for="Address_Street" class="placeholder">{{a.Address_Street}}</label>
+                          </div>
+                          
+                          
+                        </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="closex" data-dismiss="modal">Close</button>
+                    <button id = "btnUpdateAddress" name="btnUpdateAddress" type="submit" class="confirmx">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>  
+            </form>
+            <!--DELETE RESTAURANT MODAL-->
+            <div id="deleteAddress-{{a.Address_ID}}" class="modal fade">
+              <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                  <div class="modal-header flex-column">
+                    <div class="icon-box">
+                      <i class="material-icons">&#xE5CD;</i>
+                    </div>						
+                    <h4 class="modal-title w-100">Are you sure?</h4>	
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  </div>
+                  <form method="POST" id = "deleteAddress">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                      <input type="text" class="form-control" id ="Address_ID" name="Address_ID" value="{{a.Address_ID}}" hidden>
+                      <p>Do you really want the data of Address no. {{a.Address_ID}}: {{a.Address_Street}}? This process cannot be undone.</p>
+                    </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="btnDeleteAddress" name ="btnDeleteAddress" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
             {% endfor %}
             </tbody>
+
+
             
     </table>
     </div>
 
-    <div class="tbl" id="4">
+<!-- FOOD TABLE -->
+<div class="tbl" id="4">
 <table id="tbl4" class="display" style="width:100%;">
 <h1>Food</h1>
 <p align="right">
@@ -581,6 +856,7 @@ var myChartdough = new Chart(ctx, {
 </table>
 </div>
 
+<!-- DRIVER TABLE -->
 <div class="tbl" id="5">
     <table id="tbl5" class="display" style="width:100%;">
     <h1>Driver</h1>
@@ -873,29 +1149,33 @@ var myChartdough = new Chart(ctx, {
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" action="#">
-         
+          <form method="POST" action="{% url 'foodies:resAdd' %}">
+            {% csrf_token %}
             <div class="form1">
                 <div class="title1">Restaurant</div>
                 <hr>
-
-
                 <div class="input1-container ic2">
-                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Restaurant_Name" name="Restaurant_Name" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="firstname" class="placeholder">Restaurant Name</label>
+                  <label for="Restaurant_Name" class="placeholder">Restaurant Name</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <input id="Restaurant_Desc" name="Restaurant_Desc" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
-                  <label for="lastname" class="placeholder">Restaurant Description</label>
+                  <label for="Restaurant_Desc" class="placeholder">Restaurant Description</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <input id="Restaurant_ContactNumber" name="Restaurant_ContactNumber" class="input1" type="text" placeholder=" " required/>
                   <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</label>
+                  <label for="Restaurant_ContactNumber" class="placeholder">Contact Number</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="Address_ID" class="placeholder">Address ID</label>
                 </div>
 
                 
@@ -1206,53 +1486,7 @@ var myChartdough = new Chart(ctx, {
 <!-- Update Modals -->
 
 <!-- Modal User -->
-<div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">User</div>
-              <hr>
 
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
 <!-- Modal User -->
 
 <!-- Modal Restaurant -->

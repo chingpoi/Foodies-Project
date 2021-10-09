@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.db import transaction
 from django.views.generic import View
 from .forms import *
-from django.http import HttpResponse
+from django.http import HttpResponse, response
 
 # Create your views here.
 class IndexView(View):
@@ -37,7 +37,13 @@ class RegisterView(View):
 
 class DashboardView(View):
 	def get(self,request):
+		user = User.objects.all()
 		restaurants = Restaurant.objects.all()
+		address = Address.objects.all()
+		food = Food.objects.all()
+		driver = Driver.objects.all()
+		order = Order.objects.all()
+		orderItem = OrderItem.objects.all()
 		resDesc = Restaurant.objects.values('Restaurant_Desc').distinct()
 		
 		countAmerican = Restaurant.objects.filter(Restaurant_Desc = 'American').count()
@@ -48,12 +54,14 @@ class DashboardView(View):
 		addStreet = Address.objects.values('Address_City').distinct()
 		countCebu = Address.objects.filter(Address_City = 'Cebu').count()
 		countMandaue = Address.objects.filter(Address_City = 'Mandaue').count()
-		user = User.objects.all()
-		address = Address.objects.all()
 		context = {
 			'user': user,
-			'address': address,
 			'restaurants': restaurants,
+			'address': address,
+			'food': food,
+			'driver': driver,
+			'order': order,
+			'orderItem': orderItem,
 			'countAmerican': countAmerican,
 			'countAsian': countAsian,
 			'countCoffee': countCoffee,
@@ -63,27 +71,97 @@ class DashboardView(View):
 			'addStreet': addStreet,
 			'countCebu': countCebu,
 			'countMandaue': countMandaue 
+
 		}
 		return render(request,'dashboard.html', context)
 
-	def get(self,request):
-		user = User.objects.all()
-		restaurants = Restaurant.objects.all()
-		address = Address.objects.all()
-		food = Food.objects.all()
-		driver = Driver.objects.all()
-		order = Order.objects.all()
-		orderItem = OrderItem.objects.all()
-		context = {
-			'user': user,
-			'restaurants': restaurants,
-			'address': address,
-			'food': food,
-			'driver': driver,
-			'order': order,
-			'orderItem': orderItem,
-		}
-		return render(request,'dashboard.html', context)
+	#FOR UPDATE AND DELETE FUNCTIONS/METHODS
+	#FOR UPDATE AND DELETE USER
+	def post(self, request):
+		if request.method == 'POST':
+			#FOR USER
+			if 'btnUpdateUser' in request.POST:
+				print('User Update button clicked')
+				usID = request.POST.get("User_ID")
+				usFname = request.POST.get("User_FirstName")
+				usLname = request.POST.get("User_LastName")
+				usPassword = request.POST.get("User_Password")
+				usContact = request.POST.get("User_ContactNumber")
+				usEmail = request.POST.get("User_Email")
+				usAddress = request.POST.get("Address_ID")
+
+				update_user = User.objects.filter(User_ID = usID).update(User_FirstName = usFname, User_LastName = usLname, User_Password = usPassword, User_ContactNumber = usContact, User_Email = usEmail, Address_ID = usAddress)
+
+				print(update_user)
+				print('User Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteUser' in request.POST:
+				print('Delete Button for USER Clicked')
+				usID = request.POST.get("User_ID")
+				User.objects.filter(User_ID = usID).delete()
+				print('USER Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			#FOR RESTAURANT
+			elif 'btnUpdateRestaurant' in request.POST:
+				print('Restaurant Update Button Clicked')
+				resID = request.POST.get("Restaurant_ID")
+				resName = request.POST.get("Restaurant_Name")
+				resDesc = request.POST.get("Restaurant_Desc")
+				resContact = request.POST.get("Restaurant_ContactNumber")
+				resAddress = request.POST.get("Address_ID")
+
+				update_restaurant = Restaurant.objects.filter(Restaurant_ID = resID).update(Restaurant_Name = resName, Restaurant_Desc = resDesc, Restaurant_ContactNumber = resContact, Address_ID = resAddress)
+				print(update_restaurant)
+				print('Restaurant Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteRestaurant' in request.POST:
+				print('Delete Button for RESTAURANT Clicked')
+				resID = request.POST.get("Restaurant_ID")
+				Restaurant.objects.filter(Restaurant_ID = resID).delete()
+				print('RESTAURANT Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			#FOR ADDRESS
+			elif 'btnUpdateAddress' in request.POST:
+				print('Address Update Button Clicked')
+				addID = request.POST.get("Address_ID")
+				addProvince = request.POST.get("Address_Province")
+				addCity = request.POST.get("Address_City")
+				addStreet = request.POST.get("Address_Street")
+
+				update_address = Address.objects.filter(Address_ID = addID).update(Address_Province = addProvince, Address_City = addCity, Address_Street = addStreet)
+				print(update_address)
+				print('Address Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteAddress' in request.POST:
+				print('Delete Button for ADDRESS Clicked')
+				addID = request.POST.get("Address_ID")
+				Address.objects.filter(Address_ID = addID).delete()
+				print('ADDRESS Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			
+
+			
+
+	#FOR RESTAURANT
+	def AddRestaurant(request):
+		if request.method == "POST":
+			form = RestaurantForm(request.POST)
+			if form.is_valid():
+				print(form.is_valid())
+				rName = request.POST.get("Restaurant_Name")
+				rDesc = request.POST.get("Restaurant_Desc")
+				rContact = request.POST.get("Restaurant_ContactNumber")
+				bAddress = request.POST.get("Address_ID")
+				rAddress = Address.objects.get(Address_ID = bAddress)
+
+				form = Restaurant(Restaurant_Name = rName, Restaurant_Desc = rDesc, Restaurant_ContactNumber = rContact, Address_ID = rAddress)
+				form.save()
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
 
 	#FOR USER
 	def AddUser(request):
@@ -260,21 +338,4 @@ class RestaurantRegisterView(View):
 	def get(self,request):
 		return render(request, 'resRegister.html')
 
-	def AddRestaurant(request):
-		if request.method == "POST":
-			form = RestaurantForm(request.POST)
-			if form.is_valid():
-				print(form.is_valid())
-				rName = request.POST.get("Restaurant_Name")
-				rDesc = request.POST.get("Restaurant_Desc")
-				rContact = request.POST.get("Restaurant_ContactNumber")
-				bAddress = request.POST.get("Address_ID")
-				rAddress = Address.objects.get(Address_ID = bAddress)
-
-				form = Restaurant(Restaurant_Name = rName, Restaurant_Desc = rDesc, Restaurant_ContactNumber = rContact, Address_ID = rAddress)
-				form.save()
-				return redirect('http://127.0.0.1:8000/dashboard/')
-			else:
-				print(form.errors)
-				return HttpResponse('not valid')
 				
