@@ -49,6 +49,7 @@ class Driver(models.Model):
     Driver_LastName = models.CharField(max_length = 50)
     Driver_Email = models.EmailField(max_length = 50)
     Address_ID = models.ForeignKey(Address, on_delete = models.CASCADE)
+    Driver_ContactNumber = models.CharField(max_length = 50)
 
     class meta:
         db_table = 'tblDriver'
