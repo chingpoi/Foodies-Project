@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.db import transaction
 from django.views.generic import View
 from .forms import *
 from django.http import HttpResponse
@@ -84,18 +85,39 @@ class DashboardView(View):
 		}
 		return render(request,'dashboard.html', context)
 
-def AddUser(request):
-	if request.method == "POST":
-		form = UserForm(request.POST)
-		if form.is_valid():
-			try:
+	def AddUser(request):
+		if request.method == "POST":
+			form = UserForm(request.POST)
+			
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN USER ATTRIBUTES
+				uAddressProvince = request.POST.get("userAddressProvince")
+				uAddressCity = request.POST.get("userAddressCity")
+				uAddressStreet = request.POST.get("userAddressStreet")
+
+				#PRIMARY USER ATTRIBUTES
+				uFname = request.POST.get("userFirstname")
+				uLname = request.POST.get("userLastname")
+				uPassword = request.POST.get("userPassword")
+				uContactNumber = request.POST.get("usercontactNumber")
+				uEmail = request.POST.get("userEmail")
+
+				
+				aForm = Address(Address_province = uAddressProvince, Address_City = uAddressCity, Address_Street = uAddressStreet)
+				aForm.save()
+				uAddressID = Address.objects.get(Address_ID = "1")
+				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddressID)
 				form.save()
-				return redirect('http://127.0.0.1:8000/dashboard/') 
-			except:
-				pass
-	else:
-		form = UserForm()
-	return redirect('http://127.0.0.1:8000/dashboard/') 
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
+
+
+
+#CHING'S CODES
 
 def DeleteUser(request, id):  
     user = User.objects.get(User_ID=id)  

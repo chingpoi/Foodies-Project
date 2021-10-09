@@ -678,29 +678,61 @@ var myChartdough = new Chart(ctx, {
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" action="#">
-         
+          <form method="POST" action="{% url 'foodies:userAdd' %}">
+            {% csrf_token %}
             <div class="form1">
                 <div class="title1">User</div>
                 <hr>
 
 
                 <div class="input1-container ic2">
-                  <input id="firstname" class="input1" type="text" placeholder=" " required/>
+                  <input id="userFirstname" name="userFirstname" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
                   <label for="firstname" class="placeholder">First name</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="lastname" class="input1" type="text" placeholder=" " required/>
+                  <input id="userLastname" name="userLastname" class="input1" type="text" placeholder=" " required/>
                   <div class="cut"></div>
                   <label for="lastname" class="placeholder">Last name</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="email" class="input1" type="email" placeholder=" " required/>
+                  <input id="userPassword" name="userPassword" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="password" class="placeholder">Password</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="usercontactNumber" name="usercontactNumber" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="usercontactNumber" class="placeholder">Contact Number</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="userEmail" name="userEmail" class="input1" type="email" placeholder=" " required/>
                   <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</label>
+                  <label for="userEmail" class="placeholder">Email</label>
+                </div>
+                
+                <div class="input1-container ic2"><label for="" class="placeholder">Address</label></div>
+
+                <div class="input1-container ic2">
+                  <input id="userAddressProvince" name="userAddressProvince" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="userAddressProvince" class="placeholder">Province</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="userAddressCity" name="userAddressCity" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="userAddressCity" class="placeholder">City</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="userAddressStreet" name="userAddressStreet" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut cut-short"></div>
+                  <label for="userAddressStreet" class="placeholder">Street</label>
                 </div>
 
                 
