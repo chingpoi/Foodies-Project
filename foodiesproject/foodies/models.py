@@ -67,6 +67,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     OrderItem_ID = models.AutoField(auto_created = True, primary_key = True)
+    Order_ID = models.ForeignKey(Order, on_delete = models.CASCADE)
     Food_ID = models.ForeignKey(Food, on_delete = models.CASCADE)
     Quantity = models.IntegerField()
     Cost = models.IntegerField()
