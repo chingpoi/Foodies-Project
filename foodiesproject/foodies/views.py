@@ -85,6 +85,7 @@ class DashboardView(View):
 		}
 		return render(request,'dashboard.html', context)
 
+	#FOR USER
 	def AddUser(request):
 		if request.method == "POST":
 			form = UserForm(request.POST)
@@ -92,22 +93,38 @@ class DashboardView(View):
 			if form.is_valid():
 				print(form.is_valid())
 				#FOREIGN USER ATTRIBUTES
-				uAddressProvince = request.POST.get("userAddressProvince")
-				uAddressCity = request.POST.get("userAddressCity")
-				uAddressStreet = request.POST.get("userAddressStreet")
+				bAddress = request.POST.get("Address_ID")
+				uAddress = Address.objects.get(Address_ID = bAddress)
 
 				#PRIMARY USER ATTRIBUTES
-				uFname = request.POST.get("userFirstname")
-				uLname = request.POST.get("userLastname")
-				uPassword = request.POST.get("userPassword")
-				uContactNumber = request.POST.get("usercontactNumber")
-				uEmail = request.POST.get("userEmail")
+				uFname = request.POST.get("User_FirstName")
+				uLname = request.POST.get("User_LastName")
+				uPassword = request.POST.get("User_Password")
+				uContactNumber = request.POST.get("User_ContactNumber")
+				uEmail = request.POST.get("User_Email")
 
 				
-				aForm = Address(Address_province = uAddressProvince, Address_City = uAddressCity, Address_Street = uAddressStreet)
-				aForm.save()
-				uAddressID = Address.objects.get(Address_ID = "1")
-				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddressID)
+				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddress)
+				form.save()
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+		
+	#FOR ADDRESS
+	def AddAddress(request):
+		if request.method == "POST":
+			form = AddressForm(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+
+				#PRIMARY ADDRESS ATTRIBUTES
+				aProvince = request.POST.get("Address_Province")
+				aCity = request.POST.get("Address_City")
+				aStreet = request.POST.get("Address_Street")
+
+				form = Address(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
 				form.save()
 				return redirect('http://127.0.0.1:8000/dashboard/')
 			else:

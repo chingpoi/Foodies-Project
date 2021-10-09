@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name="index"),
     path('dashboard/', views.DashboardView.as_view(), name="dashboard"),
     path('createUser', views.DashboardView.AddUser, name = "userAdd"),
+    path('createAddress', views.DashboardView.AddAddress, name="addressAdd"),
     path('resRegister/', views.RestaurantRegisterView.as_view(), name = "resRegister_view"),
     path('createRestaurant', views.RestaurantRegisterView.AddRestaurant, name = "resAdd"),
 ]
