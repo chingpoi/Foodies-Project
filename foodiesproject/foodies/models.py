@@ -47,8 +47,6 @@ class Driver(models.Model):
     Driver_ID = models.AutoField(auto_created = True, primary_key = True)
     Driver_FirstName = models.CharField(max_length = 50)
     Driver_LastName = models.CharField(max_length = 50)
-    Driver_Password = models.CharField(max_length = 50)
-    Driver_Password = models.CharField(max_length = 50)
     Driver_Email = models.EmailField(max_length = 50)
     Address_ID = models.ForeignKey(Address, on_delete = models.CASCADE)
 
@@ -59,14 +57,16 @@ class Order(models.Model):
     Order_ID = models.AutoField(auto_created = True, primary_key = True)
     User_ID = models.ForeignKey(User, on_delete = models.CASCADE)
     Order_Type = models.CharField(max_length = 50)
-    Driver_ID = models.ForeignKey(Driver, on_delete = models.CASCADE)
+    Driver_ID = models.ForeignKey(Driver, on_delete = models.CASCADE, null = True)
     Order_TotalCost = models.IntegerField()
+    Date = models.CharField(max_length = 10)
+    Time = models.CharField(max_length = 10)
 
     class meta:
         db_table = 'tblOrder'
 
 class OrderItem(models.Model):
-    Order_ID = models.AutoField(auto_created = True, primary_key = True)
+    OrderItem_ID = models.AutoField(auto_created = True, primary_key = True)
     Food_ID = models.ForeignKey(Food, on_delete = models.CASCADE)
     Quantity = models.IntegerField()
     Cost = models.IntegerField()
