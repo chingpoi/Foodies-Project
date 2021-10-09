@@ -167,10 +167,10 @@ var ctx = document.getElementById('myChartBar').getContext('2d');
 var myChartBar = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["{%for res in resDesc%}'{{res.Restaurant_Desc}}',{%endfor%}"],
+        labels: ["{%for res in resDesc%}'{{res.Restaurant_Desc}}'   {%endfor%}"],
         datasets: [{
             label: 'Different Types of Restaurants',
-            data: ["{{countCoffee}}","{{countAsian}}","{{countAmerican}}","{{countFilipino}}","{{countCouple}}"],
+            data: ['{{countCoffee}}','{{countAsian}}','{{countAmerican}}','{{countFilipino}}','{{countCouple}}'],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -206,7 +206,7 @@ var ctx = document.getElementById('myChartdough').getContext('2d');
 var myChartdough = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ["{%for add in addStreet%}'{{add.Address_City}}',{%endfor%}"],
+        labels: ["{%for add in addStreet%}'{{add.Address_City}}'    {%endfor%}"],
         datasets: [{
             label: 'Different Types of Restaurants',
             data: ['{{countCebu}}','{{countMandaue}}'],
