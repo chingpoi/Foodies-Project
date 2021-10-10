@@ -140,6 +140,93 @@ class DashboardView(View):
 				Address.objects.filter(Address_ID = addID).delete()
 				print('ADDRESS Record Deleted')
 				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			#FOR FOOD
+			elif 'btnUpdateFood' in request.POST:
+				print('Food Update Button Clicked')
+				foodID = request.POST.get("Food_ID")
+				rID = request.POST.get("Restaurant_ID")
+				fName = request.POST.get("Food_Name")
+				fDesc = request.POST.get("Food_Desc")
+				fPrice = int(request.POST.get("Food_Price"))
+
+				update_food = Food.objects.filter(Food_ID = foodID).update(Restaurant_ID = rID, Food_Name = fName, Food_Desc = fDesc, Food_Price = fPrice)
+				print(update_food)
+				print('food Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteFood' in request.POST:
+				print('Delete Button for FOOD Clicked')
+				foodID = request.POST.get("Food_ID")
+				Food.objects.filter(Food_ID = foodID).delete()
+				print('FOOD Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			#FOR DRIVER
+			elif 'btnUpdateDriver' in request.POST:
+				print('Driver Update Button Clicked')
+				driverID = request.POST.get("Driver_ID")
+				dFirstName = request.POST.get("Driver_FirstName")
+				dLastName = request.POST.get("Driver_LastName")
+				dEmail = request.POST.get("Driver_Email")
+				aID = request.POST.get("Address_ID")
+				dContactNumber = request.POST.get("Driver_ContactNumber")
+
+				update_driver = Driver.objects.filter(Driver_ID = driverID).update(Driver_FirstName = dFirstName, Driver_LastName = dLastName, Driver_Email = dEmail, Address_ID = aID, Driver_ContactNumber = dContactNumber)
+				print(update_driver)
+				print('driver Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteDriver' in request.POST:
+				print('Delete Button for DRIVER Clicked')
+				driverID = request.POST.get("Driver_ID")
+				Driver.objects.filter(Driver_ID = driverID).delete()
+				print('DRIVER Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			#FOR ORDER
+			elif 'btnUpdateOrder' in request.POST:
+				print('Order Update Button Clicked')
+				oID = request.POST.get("Order_ID")
+				uID = request.POST.get("User_ID")
+				oType = request.POST.get("Order_Type")
+				dID = request.POST.get("Driver_ID")
+				oTotalCost = request.POST.get("Order_TotalCost")
+				date = request.POST.get("Date")
+				time = request.POST.get("Time")
+
+				update_order = Order.objects.filter(Order_ID = oID).update(User_ID = uID, Order_Type = oType, Driver_ID = dID, Order_TotalCost = oTotalCost, Date = date,Time = time)
+				print(update_order)
+				print('order Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteOrder' in request.POST:
+				print('Delete Button for ORDER Clicked')
+				oID = request.POST.get("Order_ID")
+				Order.objects.filter(Order_ID = oID).delete()
+				print('Order Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			#FOR ORDER ITEM
+			elif 'btnUpdateOrderItem' in request.POST:
+				print('Order Item Update Button Clicked')
+				oItemID = request.POST.get("OrderItem_ID")
+				oID = request.POST.get("Order_ID")
+				fID = request.POST.get("Food_ID")
+				quanitity = int(request.POST.get("Quantity"))
+				cost = int(request.POST.get("Cost"))
+
+				update_order_item = OrderItem.objects.filter(OrderItem_ID = oItemID).update(Order_ID = oID, Food_ID = fID, Quantity = quanitity, Cost = cost)
+				print(update_order_item)
+				print('order item Updated')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+			elif 'btnDeleteOrderItem' in request.POST:
+				print('Delete Button for ORDER ITEM Clicked')
+				oItemID = request.POST.get("OrderItem_ID")
+				OrderItem.objects.filter(OrderItem_ID = oItemID).delete()
+				print('Order Item Record Deleted')
+				return redirect('http://127.0.0.1:8000/dashboard/')
+
+			
+
+				
 			
 
 			

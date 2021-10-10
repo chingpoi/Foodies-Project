@@ -503,37 +503,37 @@ var myChartdough = new Chart(ctx, {
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="User_FirstName" name="User_FirstName" class="input1" type="text" placeholder=" " />
+                        <input id="User_FirstName" name="User_FirstName" class="input1" type="text" placeholder=" " required/>
                         <div class="cut"></div>
                         <label for="User_FirstName" class="placeholder">{{u.User_FirstName}}</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="User_LastName" name="User_LastName" class="input1" type="text" placeholder=" " />
+                        <input id="User_LastName" name="User_LastName" class="input1" type="text" placeholder=" " required/>
                         <div class="cut"></div>
                         <label for="User_LastName" class="placeholder">{{u.User_LastName}}</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="User_Password" name="User_Password" class="input1" type="text" placeholder=" " />
+                        <input id="User_Password" name="User_Password" class="input1" type="text" placeholder=" " required/>
                         <div class="cut cut-short"></div>
                         <label for="User_Password" class="placeholder">{{u.User_Password}}</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="User_ContactNumber" name="User_ContactNumber" class="input1" type="text" placeholder=" " />
+                        <input id="User_ContactNumber" name="User_ContactNumber" class="input1" type="text" placeholder=" " required/>
                         <div class="cut cut-short"></div>
                         <label for="User_ContactNumber" class="placeholder">{{u.User_ContactNumber}}</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="User_Email" name="User_Email" class="input1" type="email" placeholder=" " />
+                        <input id="User_Email" name="User_Email" class="input1" type="email" placeholder=" " required/>
                         <div class="cut cut-short"></div>
                         <label for="User_Email" class="placeholder">{{u.User_Email}}</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " />
+                        <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
                         <div class="cut cut-short"></div>
                         <label for="Address_ID" class="placeholder">{{u.Address_ID}}</label>
                       </div>
@@ -732,7 +732,7 @@ var myChartdough = new Chart(ctx, {
                 <td><button class="bupdate" data-toggle="modal" data-target="#updateAddress-{{a.Address_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteAddress-{{a.Address_ID}}">Delete</button></td>
             </tr>
 
-            <!--UPDATE RESTAURANT MODAL-->
+            <!--UPDATE ADDRESS MODAL-->
             <div class="modal fade" id="updateAddress-{{a.Address_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -788,7 +788,7 @@ var myChartdough = new Chart(ctx, {
               </div>
             </div>  
             </form>
-            <!--DELETE RESTAURANT MODAL-->
+            <!--DELETE ADDRESS MODAL-->
             <div id="deleteAddress-{{a.Address_ID}}" class="modal fade">
               <div class="modal-dialog modal-confirm">
                 <div class="modal-content">
@@ -848,8 +848,96 @@ var myChartdough = new Chart(ctx, {
           <td>{{f.Food_Name}}</td>
           <td>{{f.Food_Desc}}</td>
           <td>{{f.Food_Price}}</td>
-            <td><button class="bupdate" data-toggle="modal" data-target="#updateFood">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+          <td><button class="bupdate" data-toggle="modal" data-target="#updateFood-{{f.Food_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteFood-{{f.Food_ID}}">Delete</button></td>
         </tr>
+
+        <!--UPDATE FOOD MODAL-->
+        <div class="modal fade" id="updateFood-{{f.Food_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #83b2d0;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Food</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <center>
+                <form method="POST" id = "updateFood">
+                  {% csrf_token %}
+                  <div class="form1">
+                      <div class="title1">Food</div>
+                      <hr>
+        
+                      
+                      <div class="input1-container ic2">
+                        <input id="Food_ID" name="Food_ID" class="input1" type="text" value="{{f.Food_ID}}" readonly/>
+                        <div class="cut"></div>
+                        
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="Restaurant_ID" class="placeholder">{{f.Restaurant_ID}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Food_Name" name="Food_Name" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Food_Name" class="placeholder">{{f.Food_Name}}</label>
+                      </div>
+        
+        
+                      <div class="input1-container ic2">
+                        <input id="Food_Desc" name="Food_Desc" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Food_Desc" class="placeholder">{{f.Food_Desc}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Food_Price" name="Food_Price" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Food_Price" class="placeholder">{{f.Food_Price}}</label>
+                      </div>
+                      
+                      
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="closex" data-dismiss="modal">Close</button>
+                <button id = "btnUpdateFood" name="btnUpdateFood" type="submit" class="confirmx">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </form>
+        <!--DELETE FOOD MODAL-->
+        <div id="deleteFood-{{f.Food_ID}}" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>						
+                <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <form method="POST" id = "deleteFood">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" class="form-control" id ="Food_ID" name="Food_ID" value="{{f.Food_ID}}" hidden>
+                  <p>Do you really want the data of Food no. {{f.Food_ID}}: {{f.Food_Name}}? This process cannot be undone.</p>
+                </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="btnDeleteFood" name ="btnDeleteFood" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
         {% endfor %}
         </tbody>
         
@@ -885,8 +973,102 @@ var myChartdough = new Chart(ctx, {
               <td>{{d.Driver_Email}}</td>
               <td>{{d.Address_ID}}</td>
               <td>{{d.Driver_ContactNumber}}</td>
-                <td><button class="bupdate" data-toggle="modal" data-target="#updateDriver">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+              <td><button class="bupdate" data-toggle="modal" data-target="#updateDriver-{{d.Driver_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteDriver-{{d.Driver_ID}}">Delete</button></td>
             </tr>
+
+            <!--UPDATE FOOD MODAL-->
+        <div class="modal fade" id="updateDriver-{{d.Driver_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #83b2d0;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Driver</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <center>
+                <form method="POST" id = "updateDriver">
+                  {% csrf_token %}
+                  <div class="form1">
+                      <div class="title1">Driver</div>
+                      <hr>
+        
+                      
+                      <div class="input1-container ic2">
+                        <input id="Driver_ID" name="Driver_ID" class="input1" type="text" value="{{d.Driver_ID}}" readonly/>
+                        <div class="cut"></div>
+                        
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Driver_FirstName" name="Driver_FirstName" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="Driver_FirstName" class="placeholder">{{d.Driver_FirstName}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Driver_LastName" name="Driver_LastName" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Driver_LastName" class="placeholder">{{d.Driver_LastName}}</label>
+                      </div>
+        
+        
+                      <div class="input1-container ic2">
+                        <input id="Driver_Email" name="Driver_Email" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Driver_Email" class="placeholder">{{d.Driver_Email}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Address_ID" name="Address_ID" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Address_ID" class="placeholder">{{d.Address_ID}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Driver_ContactNumber" name="Driver_ContactNumber" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Driver_ContactNumber" class="placeholder">{{d.Driver_ContactNumber}}</label>
+                      </div>
+                      
+                      
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="closex" data-dismiss="modal">Close</button>
+                <button id = "btnUpdateDriver" name="btnUpdateDriver" type="submit" class="confirmx">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </form>
+        <!--DELETE DRIVER MODAL-->
+        <div id="deleteDriver-{{d.Driver_ID}}" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>						
+                <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <form method="POST" id = "deleteDriver">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" class="form-control" id ="Driver_ID" name="Driver_ID" value="{{d.Driver_ID}}" hidden>
+                  <p>Do you really want the data of Driver no. {{d.Driver_ID}}: {{d.Driver_FirstName}}? This process cannot be undone.</p>
+                </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="btnDeleteDriver" name ="btnDeleteDriver" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
             {% endfor %}
             </tbody>
             
@@ -923,8 +1105,108 @@ var myChartdough = new Chart(ctx, {
                   <td>{{o.Order_TotalCost}}</td>
                   <td>{{o.Date}}</td>
                   <td>{{o.Time}}</td>
-                    <td><button class="bupdate" data-toggle="modal" data-target="#updateOrder">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+                  <td><button class="bupdate" data-toggle="modal" data-target="#updateOrder-{{o.Order_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteOrder-{{o.Order_ID}}">Delete</button></td>
                 </tr>
+
+                <!--UPDATE ORDER MODAL-->
+        <div class="modal fade" id="updateOrder-{{o.Order_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #83b2d0;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <center>
+                <form method="POST" id = "updateDriver">
+                  {% csrf_token %}
+                  <div class="form1">
+                      <div class="title1">Order</div>
+                      <hr>
+        
+                      
+                      <div class="input1-container ic2">
+                        <input id="Order_ID" name="Order_ID" class="input1" type="text" value="{{o.Order_ID}}" readonly/>
+                        <div class="cut"></div>
+                        
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="User_ID" name="User_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="User_ID" class="placeholder">{{o.User_ID}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Order_Type" name="Order_Type" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Order_Type" class="placeholder">{{o.Order_Type}}</label>
+                      </div>
+        
+        
+                      <div class="input1-container ic2">
+                        <input id="Driver_ID" name="Driver_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Driver_ID" class="placeholder">{{o.Driver_ID}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Order_TotalCost" name="Order_TotalCost" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Order_TotalCost" class="placeholder">{{o.Order_TotalCost}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Date" name="Date" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Date" class="placeholder">{{o.Date}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Time" name="Time" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Time" class="placeholder">{{o.Time}}</label>
+                      </div>
+                      
+                      
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="closex" data-dismiss="modal">Close</button>
+                <button id = "btnUpdateOrder" name="btnUpdateOrder" type="submit" class="confirmx">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </form>
+        <!--DELETE ORDER MODAL-->
+        <div id="deleteOrder-{{o.Order_ID}}" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>						
+                <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <form method="POST" id = "deleteOrder">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" class="form-control" id ="Order_ID" name="Order_ID" value="{{o.Order_ID}}" hidden>
+                  <p>Do you really want the data of Order no. {{o.Order_ID}}: {{o.User_ID}}? This process cannot be undone.</p>
+                </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="btnDeleteOrder" name ="btnDeleteOrder" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
                 {% endfor %}
                 </tbody>
                 
@@ -957,8 +1239,98 @@ var myChartdough = new Chart(ctx, {
                       <td>{{oi.Food_ID}}</td>
                       <td>{{oi.Quantity}}</td>
                       <td>{{oi.Cost}}</td>
-                        <td><button class="bupdate" data-toggle="modal" data-target="#updateOrderItem">Update</button><hr><button href="#deleteModal" class="bdelete" data-toggle="modal" type="button">Delete</button></td>
+                      <td><button class="bupdate" data-toggle="modal" data-target="#updateOrderItem-{{oi.OrderItem_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteOrderItem-{{oi.OrderItem_ID}}">Delete</button></td>
                     </tr>
+
+                    <!--UPDATE FOOD MODAL-->
+        <div class="modal fade" id="updateOrderItem-{{oi.OrderItem_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #83b2d0;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Order Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <center>
+                <form method="POST" id = "updateOrderItem">
+                  {% csrf_token %}
+                  <div class="form1">
+                      <div class="title1">Order Item</div>
+                      <hr>
+        
+                      
+                      <div class="input1-container ic2">
+                        <input id="OrderItem_ID" name="OrderItem_ID" class="input1" type="text" value="{{oi.OrderItem_ID}}" readonly/>
+                        <div class="cut"></div>
+                        
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Order_ID" name="Order_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut"></div>
+                        <label for="Order_ID" class="placeholder">{{oi.Order_ID}}</label>
+                      </div>
+        
+                      <div class="input1-container ic2">
+                        <input id="Food_ID" name="Food_ID" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Food_ID" class="placeholder">{{oi.Food_ID}}</label>
+                      </div>
+        
+        
+                      <div class="input1-container ic2">
+                        <input id="Quantity" name="Quantity" class="input1" type="text" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Quantity" class="placeholder">{{oi.Quantity}}</label>
+                      </div>
+
+                      <div class="input1-container ic2">
+                        <input id="Cost" name="Cost" class="input1" type="number" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Cost" class="placeholder">{{oi.Cost}}</label>
+                      </div>
+
+                  
+                      
+                      
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="closex" data-dismiss="modal">Close</button>
+                <button id = "btnUpdateOrderItem" name="btnUpdateOrderItem" type="submit" class="confirmx">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </form>
+        <!--DELETE DRIVER MODAL-->
+        <div id="deleteOrderItem-{{oi.OrderItem_ID}}" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>						
+                <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <form method="POST" id = "deleteOrderItem">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" class="form-control" id ="OrderItem_ID" name="OrderItem_ID" value="{{oi.OrderItem_ID}}" hidden>
+                  <p>Do you really want the data of Driver no. {{oi.OrderItem_ID}}: {{oi.Order_ID}}? This process cannot be undone.</p>
+                </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="btnDeleteOrderItem" name ="btnDeleteOrderItem" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
                     {% endfor %}
                     </tbody>
                     
@@ -1479,317 +1851,6 @@ var myChartdough = new Chart(ctx, {
   </div>
   </form>
 <!-- Modal Order Item -->
-
-
-
-
-<!-- Update Modals -->
-
-<!-- Modal User -->
-
-<!-- Modal User -->
-
-<!-- Modal Restaurant -->
-<div class="modal fade" id="updateRestaurant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Restaurant</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">Restaurant</div>
-              <hr>
-
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<!-- Modal Restaurant -->
-
-<!-- Modal Address -->
-<div class="modal fade" id="updateAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Address</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">Address</div>
-              <hr>
-
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<!-- Modal Address -->
-
-<!-- Modal Food -->
-<div class="modal fade" id="updateFood" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Food</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">Food</div>
-              <hr>
-
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<!-- Modal Food -->
-
-<!-- Modal Driver -->
-<div class="modal fade" id="updateDriver" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Driver</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">Driver</div>
-              <hr>
-
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<!-- Modal Driver -->
-
-<!-- Modal Order -->
-<div class="modal fade" id="updateOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Order</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">Order</div>
-              <hr>
-
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<!-- Modal Order -->
-
-<!-- Modal Order Item -->
-<div class="modal fade" id="updateOrderItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #83b2d0;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Order Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <center>
-        <form method="POST" action="#">
-       
-          <div class="form1">
-              <div class="title1">Order Item</div>
-              <hr>
-
-
-              <div class="input1-container ic2">
-                <input id="firstname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="firstname" class="placeholder">First name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="lastname" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="lastname" class="placeholder">Last name</label>
-              </div>
-
-              <div class="input1-container ic2">
-                <input id="email" class="input1" type="email" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="email" class="placeholder">Email</label>
-              </div>
-
-              
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="closex" data-dismiss="modal">Close</button>
-        <button type="submit" class="confirmx">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<!-- Modal Order Item -->
-
-
 
 
 <hr>
