@@ -338,4 +338,3 @@ class RestaurantRegisterView(View):
 	def get(self,request):
 		return render(request, 'resRegister.html')
 
-				
