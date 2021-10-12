@@ -637,28 +637,28 @@ var myChartdough = new Chart(ctx, {
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Restaurant_Name" name="Restaurant_Name" class="input1" type="text" placeholder=" " required/>
+                        <input id="Restaurant_Name" name="Restaurant_Name" class="input1" type="text" value="{{r.Restaurant_Name}}" placeholder=" " required/>
                         <div class="cut"></div>
-                        <label for="Restaurant_Name" class="placeholder">{{r.Restaurant_Name}}</label>
+                        <label for="Restaurant_Name" class="placeholder">Restaurant Name</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Restaurant_Desc" name="Restaurant_Desc" class="input1" type="text" placeholder=" " required/>
+                        <input id="Restaurant_Desc" name="Restaurant_Desc" class="input1" type="text" value="{{r.Restaurant_Desc}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Restaurant_Desc" class="placeholder">{{r.Restaurant_Desc}}</label>
+                        <label for="Restaurant_Desc" class="placeholder">Restaurant Description</label>
                       </div>
         
         
                       <div class="input1-container ic2">
-                        <input id="Restaurant_ContactNumber" name="Restaurant_ContactNumber" class="input1" type="text" placeholder=" " required/>
+                        <input id="Restaurant_ContactNumber" name="Restaurant_ContactNumber" class="input1" type="text" value="{{r.Restaurant_ContactNumber}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Restaurant_ContactNumber" class="placeholder">{{r.Restaurant_ContactNumber}}</label>
+                        <label for="Restaurant_ContactNumber" class="placeholder">Restaurant Contact Number</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
+                        <input id="Address_ID" name="Address_ID" class="input1" type="number" value="{{r.Address_ID}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Address_ID" class="placeholder">{{r.Address_ID}}</label>
+                        <label for="Address_ID" class="placeholder">Restaurant Address ID</label>
                       </div>
                       
                       
@@ -758,22 +758,22 @@ var myChartdough = new Chart(ctx, {
                           </div>
             
                           <div class="input1-container ic2">
-                            <input id="Address_Province" name="Address_Province" class="input1" type="text" placeholder=" " required/>
+                            <input id="Address_Province" name="Address_Province" class="input1" type="text" value="{{a.Address_Province}}" placeholder=" " required/>
                             <div class="cut"></div>
-                            <label for="Address_Province" class="placeholder">{{a.Address_Province}}</label>
+                            <label for="Address_Province" class="placeholder">Address Province</label>
                           </div>
             
                           <div class="input1-container ic2">
-                            <input id="Address_City" name="Address_City" class="input1" type="text" placeholder=" " required/>
+                            <input id="Address_City" name="Address_City" class="input1" type="text" value="{{a.Address_City}}" placeholder=" " required/>
                             <div class="cut cut-short"></div>
-                            <label for="Address_City" class="placeholder">{{a.Address_City}}</label>
+                            <label for="Address_City" class="placeholder">Address City</label>
                           </div>
             
             
                           <div class="input1-container ic2">
-                            <input id="Address_Street" name="Address_Street" class="input1" type="text" placeholder=" " required/>
+                            <input id="Address_Street" name="Address_Street" class="input1" type="text" value="{{a.Address_Street}}" placeholder=" " required/>
                             <div class="cut cut-short"></div>
-                            <label for="Address_Street" class="placeholder">{{a.Address_Street}}</label>
+                            <label for="Address_Street" class="placeholder">Address Street</label>
                           </div>
                           
                           
@@ -877,28 +877,28 @@ var myChartdough = new Chart(ctx, {
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="text" placeholder=" " required/>
+                        <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="number" value="{{f.Restaurant_ID}}" placeholder=" " required/>
                         <div class="cut"></div>
-                        <label for="Restaurant_ID" class="placeholder">{{f.Restaurant_ID}}</label>
+                        <label for="Restaurant_ID" class="placeholder">Food Restaurant ID</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Food_Name" name="Food_Name" class="input1" type="text" placeholder=" " required/>
+                        <input id="Food_Name" name="Food_Name" class="input1" type="text" value="{{f.Food_Name}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Food_Name" class="placeholder">{{f.Food_Name}}</label>
+                        <label for="Food_Name" class="placeholder">Food Name</label>
                       </div>
         
         
                       <div class="input1-container ic2">
-                        <input id="Food_Desc" name="Food_Desc" class="input1" type="text" placeholder=" " required/>
+                        <input id="Food_Desc" name="Food_Desc" class="input1" type="text" value="{{f.Food_Desc}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Food_Desc" class="placeholder">{{f.Food_Desc}}</label>
+                        <label for="Food_Desc" class="placeholder">Food Description</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Food_Price" name="Food_Price" class="input1" type="number" placeholder=" " required/>
+                        <input id="Food_Price" name="Food_Price" class="input1" type="number" value="{{f.Food_Price}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Food_Price" class="placeholder">{{f.Food_Price}}</label>
+                        <label for="Food_Price" class="placeholder">Food Price</label>
                       </div>
                       
                       
@@ -1002,34 +1002,34 @@ var myChartdough = new Chart(ctx, {
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Driver_FirstName" name="Driver_FirstName" class="input1" type="text" placeholder=" " required/>
+                        <input id="Driver_FirstName" name="Driver_FirstName" class="input1" type="text" value="{{d.Driver_FirstName}}" placeholder=" " required/>
                         <div class="cut"></div>
-                        <label for="Driver_FirstName" class="placeholder">{{d.Driver_FirstName}}</label>
+                        <label for="Driver_FirstName" class="placeholder">Driver Firstname</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Driver_LastName" name="Driver_LastName" class="input1" type="text" placeholder=" " required/>
+                        <input id="Driver_LastName" name="Driver_LastName" class="input1" type="text" value="{{d.Driver_LastName}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Driver_LastName" class="placeholder">{{d.Driver_LastName}}</label>
+                        <label for="Driver_LastName" class="placeholder">Driver Lastname</label>
                       </div>
         
         
                       <div class="input1-container ic2">
-                        <input id="Driver_Email" name="Driver_Email" class="input1" type="text" placeholder=" " required/>
+                        <input id="Driver_Email" name="Driver_Email" class="input1" type="text" value="{{d.Driver_Email}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Driver_Email" class="placeholder">{{d.Driver_Email}}</label>
+                        <label for="Driver_Email" class="placeholder">Driver Email</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Address_ID" name="Address_ID" class="input1" type="number" placeholder=" " required/>
+                        <input id="Address_ID" name="Address_ID" class="input1" type="number" value="{{d.Address_ID}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Address_ID" class="placeholder">{{d.Address_ID}}</label>
+                        <label for="Address_ID" class="placeholder">Driver Address ID</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Driver_ContactNumber" name="Driver_ContactNumber" class="input1" type="number" placeholder=" " required/>
+                        <input id="Driver_ContactNumber" name="Driver_ContactNumber" class="input1" type="number" value="{{d.Driver_ContactNumber}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Driver_ContactNumber" class="placeholder">{{d.Driver_ContactNumber}}</label>
+                        <label for="Driver_ContactNumber" class="placeholder">Driver Contact Number</label>
                       </div>
                       
                       
@@ -1108,7 +1108,7 @@ var myChartdough = new Chart(ctx, {
                   <td><button class="bupdate" data-toggle="modal" data-target="#updateOrder-{{o.Order_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteOrder-{{o.Order_ID}}">Delete</button></td>
                 </tr>
 
-                <!--UPDATE ORDER MODAL-->
+        <!--UPDATE ORDER MODAL-->
         <div class="modal fade" id="updateOrder-{{o.Order_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1128,46 +1128,46 @@ var myChartdough = new Chart(ctx, {
         
                       
                       <div class="input1-container ic2">
-                        <input id="Order_ID" name="Order_ID" class="input1" type="text" value="{{o.Order_ID}}" readonly/>
+                        <input id="Order_ID" name="Order_ID" class="input1" type="text" value="{{o.Order_ID}}" placeholder="{{o.Order_ID}}" readonly/>
                         <div class="cut"></div>
                         
                       </div>
-        
+
                       <div class="input1-container ic2">
-                        <input id="User_ID" name="User_ID" class="input1" type="text" placeholder=" " required/>
-                        <div class="cut"></div>
-                        <label for="User_ID" class="placeholder">{{o.User_ID}}</label>
+                        <input id="Order_Type" name="Order_Type" class="input1" type="number" value="{{o.User_ID}}" placeholder=" " required/>
+                        <div class="cut cut-short"></div>
+                        <label for="Order_Type" class="placeholder">Order User ID</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Order_Type" name="Order_Type" class="input1" type="text" placeholder=" " required/>
+                        <input id="Order_Type" name="Order_Type" class="input1" type="text" value="{{o.Order_Type}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Order_Type" class="placeholder">{{o.Order_Type}}</label>
+                        <label for="Order_Type" class="placeholder">Order Type</label>
                       </div>
         
         
                       <div class="input1-container ic2">
-                        <input id="Driver_ID" name="Driver_ID" class="input1" type="text" placeholder=" " required/>
+                        <input id="Driver_ID" name="Driver_ID" class="input1" type="number" value="{{o.Driver_ID}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Driver_ID" class="placeholder">{{o.Driver_ID}}</label>
+                        <label for="Driver_ID" class="placeholder">Order Driver ID</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Order_TotalCost" name="Order_TotalCost" class="input1" type="number" placeholder=" " required/>
+                        <input id="Order_TotalCost" name="Order_TotalCost" class="input1" type="number" value="{{o.Order_TotalCost}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Order_TotalCost" class="placeholder">{{o.Order_TotalCost}}</label>
+                        <label for="Order_TotalCost" class="placeholder">Order Total Cost</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Date" name="Date" class="input1" type="number" placeholder=" " required/>
+                        <input id="Date" name="Date" class="input1" type="date" value="{{o.Date}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Date" class="placeholder">{{o.Date}}</label>
+                        <label for="Date" class="placeholder">Order Date</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Time" name="Time" class="input1" type="number" placeholder=" " required/>
+                        <input id="Time" name="Time" class="input1" type="time" value="{{o.Time}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Time" class="placeholder">{{o.Time}}</label>
+                        <label for="Time" class="placeholder">Order Time</label>
                       </div>
                       
                       
@@ -1242,7 +1242,7 @@ var myChartdough = new Chart(ctx, {
                       <td><button class="bupdate" data-toggle="modal" data-target="#updateOrderItem-{{oi.OrderItem_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteOrderItem-{{oi.OrderItem_ID}}">Delete</button></td>
                     </tr>
 
-                    <!--UPDATE FOOD MODAL-->
+        <!--UPDATE ORDER ITEM MODAL-->
         <div class="modal fade" id="updateOrderItem-{{oi.OrderItem_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1262,34 +1262,34 @@ var myChartdough = new Chart(ctx, {
         
                       
                       <div class="input1-container ic2">
-                        <input id="OrderItem_ID" name="OrderItem_ID" class="input1" type="text" value="{{oi.OrderItem_ID}}" readonly/>
+                        <input id="OrderItem_ID" name="OrderItem_ID" class="input1" type="text" value="{{oi.OrderItem_ID}}" placeholder="{{oi.OrderItem_ID}}" readonly/>
                         <div class="cut"></div>
                         
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Order_ID" name="Order_ID" class="input1" type="text" placeholder=" " required/>
+                        <input id="Order_ID" name="Order_ID" class="input1" type="number" value="{{oi.Order_ID}}" placeholder=" " required/>
                         <div class="cut"></div>
-                        <label for="Order_ID" class="placeholder">{{oi.Order_ID}}</label>
+                        <label for="Order_ID" class="placeholder">Order item Order ID</label>
                       </div>
         
                       <div class="input1-container ic2">
-                        <input id="Food_ID" name="Food_ID" class="input1" type="text" placeholder=" " required/>
+                        <input id="Food_ID" name="Food_ID" class="input1" type="number" value="{{oi.Food_ID}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Food_ID" class="placeholder">{{oi.Food_ID}}</label>
+                        <label for="Food_ID" class="placeholder">Order item Food ID</label>
                       </div>
         
         
                       <div class="input1-container ic2">
-                        <input id="Quantity" name="Quantity" class="input1" type="text" placeholder=" " required/>
+                        <input id="Quantity" name="Quantity" class="input1" type="text" value="{{oi.Quantity}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Quantity" class="placeholder">{{oi.Quantity}}</label>
+                        <label for="Quantity" class="placeholder">Order item Quantity</label>
                       </div>
 
                       <div class="input1-container ic2">
-                        <input id="Cost" name="Cost" class="input1" type="number" placeholder=" " required/>
+                        <input id="Cost" name="Cost" class="input1" type="number" value="{{oi.Cost}}" placeholder=" " required/>
                         <div class="cut cut-short"></div>
-                        <label for="Cost" class="placeholder">{{oi.Cost}}</label>
+                        <label for="Cost" class="placeholder">Order item Cost</label>
                       </div>
 
                   
@@ -1306,7 +1306,7 @@ var myChartdough = new Chart(ctx, {
           </div>
         </div>  
         </form>
-        <!--DELETE DRIVER MODAL-->
+        <!--DELETE ORDER ITEM MODAL-->
         <div id="deleteOrderItem-{{oi.OrderItem_ID}}" class="modal fade">
           <div class="modal-dialog modal-confirm">
             <div class="modal-content">
