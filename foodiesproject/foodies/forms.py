@@ -35,3 +35,13 @@ class OrderItemForm(forms.ModelForm):
     class Meta:
         model = OrderItem
         fields = '__all__'
+
+class RegisterForm(forms.Form):
+    User_FirstName = models.CharField(max_length = 50)
+    User_LastName = models.CharField(max_length = 50)
+    User_Password = models.CharField(max_length = 50)
+    User_ContactNumber = models.CharField(max_length = 50)
+    User_Email = models.EmailField(max_length = 50, unique = True)
+    Address_Province = models.CharField(max_length = 50)
+    Address_City = models.CharField(max_length = 50)
+    Address_Street = models.CharField(max_length = 50)

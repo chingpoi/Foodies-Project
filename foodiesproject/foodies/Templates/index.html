@@ -246,7 +246,11 @@
         </div>
         <div class="modal-body">
           <center>
+<<<<<<< Updated upstream
           <form method="POST" action="{% url 'foodies:regUser' %}">
+=======
+          <form method="POST" action="{% url 'foodies:register' %}">
+>>>>>>> Stashed changes
             {% csrf_token %}
             <div class="form1">
                 <div class="title1">Register</div>
@@ -286,10 +290,22 @@
                 <div class="input1-container ic2"><label for="" class="placeholder">Address</label></div>
                 
                 <div class="input1-container ic2">
-                  <input id="Address_ID" name="Address_ID" class="input1" type="text" placeholder=" " required/>
-                  <div class="cut cut-short"></div>
-                  <label for="Address_ID" class="placeholder">Address ID</label>
-                </div>
+                    <input id="Address_Province" name = "Address_Province" class="input1" type="text" placeholder=" " required/>
+                    <div class="cut"></div>
+                    <label for="Address_Province" class="placeholder">Address Province</label>
+                  </div>
+  
+                  <div class="input1-container ic2">
+                    <input id="Address_City" name = "Address_City" class="input1" type="text" placeholder=" " required/>
+                    <div class="cut"></div>
+                    <label for="Address_City" class="placeholder">Address City</label>
+                  </div>
+  
+                  <div class="input1-container ic2">
+                    <input id="Address_Street" name = "Address_Street" class="input1" type="text" placeholder=" " required/>
+                    <div class="cut cut-short"></div>
+                    <label for="Address_Street" class="placeholder">Address Street</label>
+                  </div>
 
                 
                 
