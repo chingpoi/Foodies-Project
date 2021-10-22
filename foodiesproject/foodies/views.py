@@ -9,22 +9,6 @@ class IndexView(View):
 	def get(self,request):
 		return render(request,'index.html')
 
-class AboutView(View):
-	def get(self,request):
-		return render(request,'about.html')
-
-class FeaturesView(View):
-	def get(self,request):
-		return render(request,'features.html')
-
-class ContactView(View):
-	def get(self,request):
-		return render(request,'contact.html')
-
-class LoginView(View):
-	def get(self,request):
-		return render(request,'login.html')
-
 class RegisterView(View):
 	def get(self,request):
 		user = User.objects.all()
@@ -34,6 +18,10 @@ class RegisterView(View):
 			'address': address
 		}
 		return render(request,'registration.html', context)
+
+class ProfileView(View):
+	def get(self,request):
+		return render(request,'profile.html')
 
 class DashboardView(View):
 	def get(self,request):

@@ -5,70 +5,7 @@
 <body>
 
 {% load static %}
-            <!-- Carousel Start -->
-            <div class="carousel"style="background-image: url('{% static 'images/back.png' %}"; >
-                <div class="container-fluid" style="max-width: 1500px">
-                    <div class="owl-carousel">
-                        <div class="carousel-item">
-                            <div class="carousel-img">
-                                <img src="{% static 'images/carousel-1.jpg' %}" alt="Image">
-                            </div>
-                            <div class="carousel-text">
-                                <h1>Register <span>Your</span> Restaurant</h1>
-                                <!--FOR REGISTER -->
-  <div class="container" style="width: 1500px; margin-left: -220px;">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
-            <h5 class="card-title text-center">Restaurant Registration</h5>
-            <form class="form-signin" action="{% url 'foodies:resAdd' %}" method="POST">
-              {% csrf_token %}
-              <div class="form-label-group">
-                <label for="username" style="margin-top: 15px;">Restaurant Name</label>
-                <input type="text" id="Restaurant_Name" name="Restaurant_Name" class="form-control" placeholder="Restaurant Name" required>
-                <div class="help-block with-errors"></div>
-              </div>
-
-              <div class="form-label-group">
-                <label for="password" style="margin-top: 15px;">Restaurant Description</label>
-                <input type="text" id="Restaurant_Desc" name="Restaurant_Desc" class="form-control" placeholder="Restaurant Description" required>
-                <div class="help-block with-errors"></div>
-              </div>
-
-
-              <div class="form-label-group">
-                <label for="fname" style="margin-top: 15px;">Contact Number</label>
-                <input type="text" id="Restaurant_ContactNumber" name="Restaurant_ContactNumber" class="form-control" placeholder="Contact Number" required>
-                <div class="help-block with-errors"></div>
-              </div>
-
-             
-              <div class="form-label-group">
-                <label for="lname" style="margin-top: 15px;">Address ID</label>
-                <input type="text" id="Address_ID" name="Address_ID" class="form-control" placeholder="Address" required>
-                <div class="help-block with-errors"></div>
-              </div>
-
-
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" name="btnRes" id="btnRes" type="submit" style="margin-top:25px;">Add Restaurant</button>
-              <hr class="my-4">
-              <a href="" tabindex="5" class="register"> Restaurant already here? Sign in!</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-                                <div class="carousel-btn">
-                                    <a class="btn custom-btn" href="">View Menu</a>
-                                    <a class="btn custom-btn" href="">Book Table</a>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-				</div>
-			</div>	                   
+            
 
 
 </body>
