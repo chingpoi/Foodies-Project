@@ -11,29 +11,30 @@ class IndexView(View):
 	def get(self,request):
 		return render(request,'index.html')
 
-	#FOR REGISTER USER
-	def RegisterUser(request):
+	def register(request):
 		if request.method == "POST":
-			form = UserForm(request.POST)
-			
+			form = RegisterForm(request.POST)
 			if form.is_valid():
 				print(form.is_valid())
-				#FOREIGN USER ATTRIBUTES
-				bAddress = request.POST.get("Address_ID")
-				uAddress = Address.objects.get(Address_ID = bAddress)
-
-				#PRIMARY USER ATTRIBUTES
 				uFname = request.POST.get("User_FirstName")
 				uLname = request.POST.get("User_LastName")
 				uPassword = request.POST.get("User_Password")
 				uContactNumber = request.POST.get("User_ContactNumber")
 				uEmail = request.POST.get("User_Email")
 
-				
+				aProvince = request.POST.get("Address_Province")
+				aCity = request.POST.get("Address_City")
+				aStreet = request.POST.get("Address_Street")
+
+				form = Address(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
+				form.save()
+
+				uAddress = Address.objects.get(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
+				print(uAddress)
+
 				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddress)
 				form.save()
-				messages.info(request, "Register Successful!")
-				return redirect('http://127.0.0.1:8000/')
+				return redirect('http://127.0.0.1:8000/dashboard/')
 			else:
 				print(form.errors)
 				return HttpResponse('not valid')
