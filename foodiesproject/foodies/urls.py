@@ -6,17 +6,20 @@ app_name = 'foodies'
 urlpatterns = [ 
 #URLs for Foodies app
     #INDEX VIEWS
-    path('', views.IndexView.as_view(), name="index"),    
+    path('', views.IndexView.as_view(), name="index"),
+    path('register', views.IndexView.Register, name = "register"),
+    path('login', views.IndexView.Login, name = "login"),
+
+
+
     #PROFILE VIEWS
     path('profile/', views.ProfileView.as_view(), name="profile"),
+    path('logout', views.ProfileView.logout, name="logout"),
+
+
 
     #DASHBOARD VIEWS
     path('dashboard/', views.DashboardView.as_view(), name="dashboard"),
-
-    path('register', views.IndexView.register, name = "register"),
-
-
-
     path('createUser', views.DashboardView.AddUser, name = "userAdd"),
     path('createAddress', views.DashboardView.AddAddress, name="addressAdd"),
     path('createFood', views.DashboardView.AddFood, name="foodAdd"),

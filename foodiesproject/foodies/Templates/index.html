@@ -251,7 +251,7 @@
 
             {% csrf_token %}
             <div class="form1">
-                <div class="title1">Register</div>
+                <div class="title1" style="text-align: center;">Register</div>
                 <hr>
 
 
@@ -324,17 +324,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #fbaf32;">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Become a Foodie</h5>
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Welcome Foodie</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <center>
-          <form method="POST" action="{% url 'foodies:userAdd' %}">
+
+          <form method="POST" action="{% url 'foodies:login' %}">
             {% csrf_token %}
             <div class="form1">
-                <div class="title1">Login</div>
+                <div class="title1" style="text-align: center;">Login</div>
                 <hr>
 
                 <div class="input1-container ic2">
@@ -364,7 +364,7 @@
     </div>
   </div>
   </form>
-<!-- Modal Register -->
+<!-- Modal Login -->
             
     
             <!-- About Start -->

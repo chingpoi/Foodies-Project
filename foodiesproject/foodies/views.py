@@ -12,7 +12,8 @@ class IndexView(View):
 	def get(self,request):
 		return render(request,'index.html')
 
-	def register(request):
+	#FOR REGISTER
+	def Register(request):
 		if request.method == "POST":
 			form = RegisterForm(request.POST)
 			if form.is_valid():
@@ -35,28 +36,58 @@ class IndexView(View):
 
 				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddress)
 				form.save()
-				return redirect('http://127.0.0.1:8000/dashboard/')
+
+				bUser = User.objects.get(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail)
+				messages.info(request, "Register Successful!")
+				request.session['User_ID'] = bUser.User_ID
+				request.session['User_FirstName'] = bUser.User_FirstName
+				request.session['User_LastName'] = bUser.User_LastName
+				request.session['User_Password'] = bUser.User_Password
+				request.session['User_ContactNumber'] = bUser.User_ContactNumber
+				request.session['User_Email'] = bUser.User_Email
+				return redirect('http://127.0.0.1:8000/profile/')
 			else:
 				print(form.errors)
 				return HttpResponse('not valid')
 
 	#FOR LOGIN
+	def Login(request):
+		if request.method == "POST":
+			user = User.objects.get(User_Email = request.POST['User_Email'])
+			if user.User_Password == request.POST['User_Password']:
+				request.session['User_ID'] = user.User_ID
+				request.session['User_FirstName'] = user.User_FirstName
+				request.session['User_LastName'] = user.User_LastName
+				request.session['User_Password'] = user.User_Password
+				request.session['User_ContactNumber'] = user.User_ContactNumber
+				request.session['User_Email'] = user.User_Email
+				return redirect('http://127.0.0.1:8000/profile/')
+			else:
+				return HttpResponse("You're Email and Password do not Match bruh.")
+
+			
 
 	
 
-class RegisterView(View):
-	def get(self,request):
-		user = User.objects.all()
-		address = Address.objects.all()
-		context = {
-			'user': user,
-			'address': address
-		}
-		return render(request,'registration.html', context)
+
 
 class ProfileView(View):
 	def get(self,request):
-		return render(request,'profile.html')
+		restaurants = Restaurant.objects.all()
+		
+		context = {
+			'restaurants': restaurants
+		}
+		return render(request,'profile.html', context)
+	
+	def logout(request):
+		try:
+			del request.session['User_ID']
+			print("logged out")
+		except KeyError:
+			pass
+		return redirect('http://127.0.0.1:8000/')
+
 
 class DashboardView(View):
 	def get(self,request):
@@ -280,9 +311,16 @@ class DashboardView(View):
 			
 			if form.is_valid():
 				print(form.is_valid())
-				#FOREIGN USER ATTRIBUTES
-				bAddress = request.POST.get("Address_ID")
-				uAddress = Address.objects.get(Address_ID = bAddress)
+				#FOREIGN USER ATTRIBUTES ADDRESS
+				aProvince = request.POST.get("Address_Province")
+				aCity = request.POST.get("Address_City")
+				aStreet = request.POST.get("Address_Street")
+
+				form = Address(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
+				form.save()
+
+				uAddress = Address.objects.get(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
+				print(uAddress)
 
 				#PRIMARY USER ATTRIBUTES
 				uFname = request.POST.get("User_FirstName")
@@ -290,6 +328,8 @@ class DashboardView(View):
 				uPassword = request.POST.get("User_Password")
 				uContactNumber = request.POST.get("User_ContactNumber")
 				uEmail = request.POST.get("User_Email")
+
+				
 
 				
 				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddress)
