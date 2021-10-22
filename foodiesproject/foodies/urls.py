@@ -5,9 +5,15 @@ from . import views
 app_name = 'foodies'
 urlpatterns = [ 
 #URLs for Foodies app
+    #INDEX VIEWS
     path('', views.IndexView.as_view(), name="index"),
-    path('dashboard/', views.DashboardView.as_view(), name="dashboard"),
+    path('registerUser', views.IndexView.RegisterUser, name="regUser"),
+    
+    #PROFILE VIEWS
     path('profile/', views.ProfileView.as_view(), name="profile"),
+
+    #DASHBOARD VIEWS
+    path('dashboard/', views.DashboardView.as_view(), name="dashboard"),
     path('createUser', views.DashboardView.AddUser, name = "userAdd"),
     path('createAddress', views.DashboardView.AddAddress, name="addressAdd"),
     path('createFood', views.DashboardView.AddFood, name="foodAdd"),
