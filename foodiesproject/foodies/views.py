@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import *
 from django.http import HttpResponse, response
 
+
 # Create your views here.
 class IndexView(View):
 	def get(self,request):
