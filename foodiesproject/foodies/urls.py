@@ -6,9 +6,7 @@ app_name = 'foodies'
 urlpatterns = [ 
 #URLs for Foodies app
     #INDEX VIEWS
-    path('', views.IndexView.as_view(), name="index"),
-    path('registerUser', views.IndexView.RegisterUser, name="regUser"),
-    
+    path('', views.IndexView.as_view(), name="index"),    
     #PROFILE VIEWS
     path('profile/', views.ProfileView.as_view(), name="profile"),
 
@@ -26,6 +24,5 @@ urlpatterns = [
     path('createOrder', views.DashboardView.AddOrder, name="orderAdd"),
     path('createOrderItem', views.DashboardView.AddOrderItem, name="orderItemAdd"),
     #path('updateUser', views.DashboardView.updateUser, name="userUpdate"),
-    path('resRegister/', views.RestaurantRegisterView.as_view(), name = "resRegister_view"),
     path('createRestaurant', views.DashboardView.AddRestaurant, name = "resAdd"),
 ]
