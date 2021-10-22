@@ -12,9 +12,13 @@ urlpatterns = [
     #PROFILE VIEWS
     path('profile/', views.ProfileView.as_view(), name="profile"),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     #DASHBOARD VIEWS
     path('dashboard/', views.DashboardView.as_view(), name="dashboard"),
+=======
+    path('register', views.IndexView.register, name = "register"),
+>>>>>>> Stashed changes
 =======
     path('register', views.IndexView.register, name = "register"),
 >>>>>>> Stashed changes
