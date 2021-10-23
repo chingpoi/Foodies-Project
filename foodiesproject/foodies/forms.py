@@ -45,3 +45,4 @@ class RegisterForm(forms.Form):
     Address_Province = models.CharField(max_length = 50)
     Address_City = models.CharField(max_length = 50)
     Address_Street = models.CharField(max_length = 50)
+

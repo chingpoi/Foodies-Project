@@ -23,7 +23,8 @@ urlpatterns = [
     path('', include('foodies.urls')),
     path('dashboard/', include('foodies.urls')),
     path('resRegister/', include('foodies.urls')),
-    path('profile/', include('foodies.urls'))
+    path('profile/', include('foodies.urls')),
+    path('orders/', include('foodies.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

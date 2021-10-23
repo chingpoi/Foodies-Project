@@ -76,7 +76,9 @@ class ProfileView(View):
 		restaurants = Restaurant.objects.all()
 		
 		context = {
-			'restaurants': restaurants
+
+			'restaurants': restaurants,
+
 		}
 		return render(request,'profile.html', context)
 	
@@ -88,6 +90,62 @@ class ProfileView(View):
 			pass
 		return redirect('http://127.0.0.1:8000/')
 
+
+			#FOR ORDER
+	def AddOrder(request):
+		if request.method == "POST":
+			form = OrderForm(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN ORDER ATTRIBUTES
+				bID = request.POST.get("User_ID")
+				uID = User.objects.get(User_ID = bID)
+
+
+
+
+				orID = request.POST.get("Restaurant_ID")
+				rID = Restaurant.objects.get(Restaurant_ID = orID)
+
+				bDriverID = request.POST.get("Driver_ID")
+				if (bDriverID):
+					uDriverID = Driver.objects.get(Driver_ID = bDriverID)
+				else:
+					uDriverID = None
+					
+					
+				
+
+				#PRIMARY ORDER ATTRIBUTES
+				
+				oType = request.POST.get("Order_Type")
+				oTotalCost = int(request.POST.get("Order_TotalCost"))
+				Date = request.POST.get("Date")
+				Time = request.POST.get("Time")
+
+				form = Order(User_ID = uID, Restaurant_ID = rID, Order_Type = oType, Driver_ID = uDriverID, Order_TotalCost = oTotalCost, Date = Date, Time = Time)
+				form.save()
+				return redirect('http://127.0.0.1:8000/orders/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
+
+
+
+class OrdersView(View):
+	def get(self,request):
+		orders = Order.objects.all()
+		orderitem = OrderItem.objects.all()
+
+		context = {
+			'orders': orders,
+			'orderitem': orderitem,
+		}
+		return render(request,'orders.html', context)
+
+		
 
 class DashboardView(View):
 	def get(self,request):
@@ -241,13 +299,14 @@ class DashboardView(View):
 				print('Order Update Button Clicked')
 				oID = request.POST.get("Order_ID")
 				uID = request.POST.get("User_ID")
+				rID = request.POST.get("Restaurant_ID")
 				oType = request.POST.get("Order_Type")
 				dID = request.POST.get("Driver_ID")
 				oTotalCost = request.POST.get("Order_TotalCost")
 				date = request.POST.get("Date")
 				time = request.POST.get("Time")
 
-				update_order = Order.objects.filter(Order_ID = oID).update(User_ID = uID, Order_Type = oType, Driver_ID = dID, Order_TotalCost = oTotalCost, Date = date,Time = time)
+				update_order = Order.objects.filter(Order_ID = oID).update(User_ID = uID, Restaurant_ID = rID, Order_Type = oType, Driver_ID = dID, Order_TotalCost = oTotalCost, Date = date,Time = time)
 				print(update_order)
 				print('order Updated')
 				return redirect('http://127.0.0.1:8000/dashboard/')
@@ -419,6 +478,12 @@ class DashboardView(View):
 				bID = request.POST.get("User_ID")
 				uID = User.objects.get(User_ID = bID)
 
+
+
+
+				orID = request.POST.get("Restaurant_ID")
+				rID = Restaurant.objects.get(Restaurant_ID = orID)
+
 				bDriverID = request.POST.get("Driver_ID")
 				if (bDriverID):
 					uDriverID = Driver.objects.get(Driver_ID = bDriverID)
@@ -429,12 +494,13 @@ class DashboardView(View):
 				
 
 				#PRIMARY FOOD ATTRIBUTES
+				
 				oType = request.POST.get("Order_Type")
 				oTotalCost = int(request.POST.get("Order_TotalCost"))
 				Date = request.POST.get("Date")
 				Time = request.POST.get("Time")
 
-				form = Order(User_ID = uID, Order_Type = oType, Driver_ID = uDriverID, Order_TotalCost = oTotalCost, Date = Date, Time = Time)
+				form = Order(User_ID = uID, Restaurant_ID = rID, Order_Type = oType, Driver_ID = uDriverID, Order_TotalCost = oTotalCost, Date = Date, Time = Time)
 				form.save()
 				return redirect('http://127.0.0.1:8000/dashboard/')
 			else:

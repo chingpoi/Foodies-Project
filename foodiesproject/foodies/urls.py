@@ -16,6 +16,9 @@ urlpatterns = [
     path('profile/', views.ProfileView.as_view(), name="profile"),
     path('logout', views.ProfileView.logout, name="logout"),
 
+    #ORDERS VIEWS
+    path('orders/', views.OrdersView.as_view(), name="orders"),
+
 
 
     #DASHBOARD VIEWS
@@ -25,6 +28,7 @@ urlpatterns = [
     path('createFood', views.DashboardView.AddFood, name="foodAdd"),
     path('createDriver', views.DashboardView.AddDriver, name="driverAdd"),
     path('createOrder', views.DashboardView.AddOrder, name="orderAdd"),
+    path('Order', views.ProfileView.AddOrder, name="order"),
     path('createOrderItem', views.DashboardView.AddOrderItem, name="orderItemAdd"),
     #path('updateUser', views.DashboardView.updateUser, name="userUpdate"),
     path('createRestaurant', views.DashboardView.AddRestaurant, name = "resAdd"),
