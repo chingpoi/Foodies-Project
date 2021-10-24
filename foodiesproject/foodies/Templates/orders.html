@@ -49,7 +49,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
                                     <div class="dropdown-menu">
                                         <a href="{% url 'foodies:profile' %}" class="dropdown-item">Profile</a>
-                                        <a href="blog.html" class="dropdown-item">Orders</a>
+                                        <a href="{% url 'foodies:orders' %}" class="dropdown-item">Orders</a>
                                         
                                     </div>
                                 </div>
@@ -335,6 +335,9 @@
        
 </style>
 
+
+
+
 {% load static %}
             
         <!-- Page Header Start -->
@@ -348,84 +351,219 @@
             </div>
         </div>
         <!-- Page Header End -->
-
-
-        <h2 style="text-align: center; padding-top: 50px; padding-bottom: 50px;">Your Orders</h2>
-      
         
+
+        <h2 style="text-align: center; padding-top: 50px; padding-bottom: 50px;">Your Order</h2>
+      
+        <div class="rows">
+          <div class="columns">
         {% for o in orders %}
+        {% ifequal request.session.User_ID o.User_ID.User_ID %}
 
         <p style="text-align: center;">
-            <a data-target="#order-{{o.Order_ID}}" data-toggle="modal" href="#order-{{o.Order_ID}}" class="hoverable">
 
-
-        <div class="card text-center" style="width: 80%; margin: auto;">
+        <div class="card text-center" style="width: 50%; margin: auto;">
             <div class="card-body">
-              <h1 class="card-title">{{o.Order_ID}}</h1>
+              <h1 class="card-title">{{o.Restaurant_ID.Restaurant_Name}}</h1>
               <hr>
-              <h2 class="card-text" style="font-size: 30px;">{{o.User_ID}}</h2>
-              <h3 class="card-text">{{o.User_ID.User_FirstName}}</h3>
+              <style>
+                table {
+                  font-family: arial, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                
+                td, th {
+                  border: 1px solid #dddddd;
+                  text-align: left;
+                  padding: 8px;
+                }
+                
+                </style>
 
+                <table>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>{{o.Order_ID}}</th>
+                  </tr>
+                  <tr>
+                    <th>Order Type</th>
+                    <th>{{o.Order_Type}}</th>
+                  </tr>
+                  {% ifequal o.Order_Type "Delivery" %}
+                  <tr>
+                    <th>Driver</th>
+                    <th>{{o.Driver_ID.Driver_FirstName}},{{o.Driver_ID.Driver_LastName}}</th>
+                  </tr>
+                  
+                  
+                  
+                  <tr>
+                    <th>Driver Contact Number </th>
+                    <th>{{o.Driver_ID.Driver_ContactNumber}}</th>
+                  </tr>
+                  
+                  {% endifequal %}
 
+                  <tr>
+                    <th>Date</th>
+                    <th>{{o.Date}}</th>
+                  </tr>
 
+                  <tr>
+                    <th>Time</th>
+                    <th>{{o.Time}}</th>
+                  </tr>
+                </table>
+
+                
+                
             </div>
           </div>
-        </a>
         </p>
+      </div>
+      <div class="columns">
+        <style>
+          .b {
+          padding: 12px 25px;
+          font-family: 'Nunito', sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          color: #ffffff;
+          background: #fbaf32;
+          border: 2px solid #fbaf32;
+          border-radius: 5px;
+          transition: .5s;
+          min-width: 200px;
+          max-width: 200px;
+      }
+      
+      .b:hover {
+          color: #fbaf32;
+          background: transparent;
+      }
+      
+      .b:focus,
+      .form-control:focus,
+      .custom-select:focus {
+          box-shadow: none;
+      }
+      
+      .badd {
+          
+          font-family: 'Nunito', sans-serif;
+          font-size: 15px;
+          font-weight: 600;
+          color: #ffffff;
+          background: #95dab6;
+          border: 2px solid #95dab6;
+          border-radius: 5px;
+          transition: .5s;
+          min-width: 100px;
+          max-width: 100px;
+      }
+      
+      .badd:hover {
+          color: #95dab6;
+          background: transparent;
+      }
+      
+      .badd:focus,
+      .form-control:focus,
+      .custom-select:focus {
+          box-shadow: none;
+      }
+      </style>
+        
+        <p style="text-align: center;">
 
+          <div class="card text-center" style="width: 30%; margin: auto;">
+              <div class="card-body">
+               
+                <button style="float: right;" class="badd" data-toggle="modal" data-target="#orderitem">Order</button>
+                <h1 class="card-title" style="padding-left: 90px;">Order Item</h1> 
+     
+                <hr>
+  
+                  <table >
+                    
+                    {% for oi in orderitem %}
+                    {% ifequal o.Order_ID oi.Order_ID.Order_ID %}
+                    <tr>
+                      <th style="text-align: right;">{{oi.Food_ID.Food_Name}} x {{oi.Quantity}}</th>
+                      <th style="text-align: right;">P{{oi.Cost}}.00</th>
+                      <th><button type="submit" id="btnDeleteAddress" name ="btnDeleteAddress" class="btn btn-danger" style="float: right;" >Cancel</button></th>
+                      
+                    </tr>
+                    {% endifequal %}
+                    {% endfor %}
+                    <tr>
+                      <th></th>
+                        <th></th>
+                      </tr>
+                    <tr>
+                    <th></th>
+                      <th style="text-align: right;">Total Cost: &nbsp &nbsp P{{o.Order_TotalCost}}.00</th>
+                      <th><button style="float: right;" class="badd" data-toggle="modal" data-target="#confirmOrder">Confirm Order</button></th>
+                    </tr>
+                  </table>
+  
+                  
+              </div>
+            </div>
+            
+            
+          </p>
+          
+
+
+        
+
+      </div>
+    </div>
 
 <!-- Modal Order -->
-<div class="modal fade" id="order-{{r.Restaurant_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="orderitem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #fbaf32;">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Order Form</h5>
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
 
-          <form method="POST" action="{% url 'foodies:order' %}">
+          <form method="POST" action="{% url 'foodies:orderItem' %}">
             {% csrf_token %}
             <div class="form1">
-                <div class="title1" style="text-align: center;">Order from {{r.Restaurant_Name}}</div>
+                <div class="title1" style="text-align: center;">Add Order</div>
                 <hr>
                 
-                    <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="hidden" value="{{r.Restaurant_ID}}" placeholder="{{r.Restaurant_ID}}" readonly/>
-                    <input id="User_ID" name="User_ID" class="input1" type="hidden" value="{{request.session.User_ID}}" placeholder="{{request.session.User_User_ID}}" readonly/>
-                    <input id="Order_TotalCost" name="Order_TotalCost" class="input1" type="hidden" value="0" placeholder="0" readonly/>
-                    
-
-
+                    <input id="Order_ID" name="Order_ID" class="input1" type="hidden" value="{{o.Order_ID}}" placeholder="{{o.Order_ID}}" readonly/>
+                  
                   <div class="input1-container ic2">
-                  <select id="Order_Type" name="Order_Type" class="input1" placeholder=" " required/>
-                    <option value="" disabled="disabled" selected="selected">Select an Order Type</option>
-                    <option value="Delivery">Delivery</option>
-                    <option value="Reservation">Reservation</option>
-                    <option value="Pickup">Pickup</option>
+                  <select id="Food_ID" name="Food_ID" class="input1" placeholder=" " required/>
+                    <option value="" disabled="disabled" selected="selected">Select an Order</option>
+                    {% for f in food %}
+                    <option value="{{f.Food_ID}}">{{f.Food_Name}} - P{{f.Food_Price}}.00</option>
+                    {% endfor %}
                   </select>
                   <div class="cut cut-short"></div>
-                  <label for="Order_Type" class="placeholder">Order Type</label>
+                  <label for="Food_ID" class="placeholder">Order Food</label>
                 </div>
     
                   <div class="input1-container ic2">
-                    <input id="Date" name="Date" class="input1" type="date"  placeholder=" " required/>
+                    <input id="Quantity" name="Quantity" class="input1" type="number" min="0" placeholder=" " required/>
                     <div class="cut cut-short"></div>
-                    <label for="Date" class="placeholder">Order Date</label>
-                  </div>
-
-                  <div class="input1-container ic2">
-                    <input id="Time" name="Time" class="input1" type="time"  placeholder=" " required/>
-                    <div class="cut cut-short"></div>
-                    <label for="Time" class="placeholder">Order Time</label>
+                    <label for="Quantity" class="placeholder" >Quantity</label>
                   </div>
 
                 </div>      
             </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
-          <button type="submit" class="confirm">Confirm</button>
+          <button type="submit" class="confirm">Add Item</button>
         </div>
     </div>
       </div>
@@ -433,8 +571,73 @@
   </form>
 <!-- Modal Order -->
 
+<!-- Modal Confirm -->
+<div class="modal fade" id="confirmOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #fbaf32;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Confirm Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
+       
+          {% csrf_token %}
+          <div class="form1">
+              <div class="title1" style="text-align: center; padding-bottom: 10px;">Confirm Order?</div>
+              
+              
+
+
+              </div>      
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="closex" data-dismiss="modal">Close</button>
+        <button type="submit" class="confirm" data-dismiss="modal" data-toggle="modal" href="#ty">Confirm</button>
+      </div>
+  </div>
+    </div>
+  </div>
+
+<!-- Modal Confirm -->
+
+<!-- Modal ty -->
+<div class="modal fade" id="ty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #fbaf32;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Thank you</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+       
+          {% csrf_token %}
+          <div class="form1">
+              <div class="title1" style="text-align: center; padding-bottom: 10px;">Thank you for choosing us, Foodie!</div>
+              
+              
+
+
+              </div>      
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="closex" data-dismiss="modal">Close</button>
+        <button type="button" class="confirm" onclick="location.href='http://127.0.0.1:8000/profile/';" >Ok</button>
+      </div>
+  </div>
+    </div>
+  </div>
+
+<!-- Modal ty -->
+
+{% endifequal %}
 {% endfor %}
+
 
 
 

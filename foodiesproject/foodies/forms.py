@@ -46,3 +46,10 @@ class RegisterForm(forms.Form):
     Address_City = models.CharField(max_length = 50)
     Address_Street = models.CharField(max_length = 50)
 
+class OrderItemForms(forms.Form):
+    OrderItem_ID = models.AutoField(auto_created = True, primary_key = True)
+    Order_ID = models.ForeignKey(Order, on_delete = models.CASCADE)
+    Food_ID = models.ForeignKey(Food, on_delete = models.CASCADE)
+    Quantity = models.IntegerField()
+
+

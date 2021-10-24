@@ -49,7 +49,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
                                     <div class="dropdown-menu">
                                         <a href="{% url 'foodies:profile' %}" class="dropdown-item">Profile</a>
-                                        <a href="blog.html" class="dropdown-item">Orders</a>
+                                        <a href="{% url 'foodies:orders' %}" class="dropdown-item">Orders</a>
                                         
                                     </div>
                                 </div>
@@ -344,6 +344,7 @@
                     <div class="col-12">
                         <h2>Welcome, {{request.session.User_FirstName}}</h2>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -395,13 +396,15 @@
                 <hr>
                 
                     <input id="Restaurant_ID" name="Restaurant_ID" class="input1" type="hidden" value="{{r.Restaurant_ID}}" placeholder="{{r.Restaurant_ID}}" readonly/>
-                    <input id="User_ID" name="User_ID" class="input1" type="hidden" value="{{request.session.User_ID}}" placeholder="{{request.session.User_User_ID}}" readonly/>
+                    <input id="User_ID" name="User_ID" class="input1" type="hidden" value="{{request.session.User_ID}}" placeholder="{{request.session.User_ID}}" readonly/>
                     <input id="Order_TotalCost" name="Order_TotalCost" class="input1" type="hidden" value="0" placeholder="0" readonly/>
+                    <!-- Address province of user -->
+                    <input id="Address_Province" name="Address_Province" class="input1" type="hidden" value="{{request.session.Address_Province}}" placeholder="0" readonly/>
                     
 
 
                   <div class="input1-container ic2">
-                  <select id="Order_Type" name="Order_Type" class="input1" placeholder=" " required/>
+                  <select id="Order_Type" name="Order_Type" class="input1" placeholder=" " required>
                     <option value="" disabled="disabled" selected="selected">Select an Order Type</option>
                     <option value="Delivery">Delivery</option>
                     <option value="Reservation">Reservation</option>

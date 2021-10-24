@@ -29,6 +29,7 @@ urlpatterns = [
     path('createDriver', views.DashboardView.AddDriver, name="driverAdd"),
     path('createOrder', views.DashboardView.AddOrder, name="orderAdd"),
     path('Order', views.ProfileView.AddOrder, name="order"),
+    path('orderItem', views.OrdersView.AddOrderItem, name="orderItem"),
     path('createOrderItem', views.DashboardView.AddOrderItem, name="orderItemAdd"),
     #path('updateUser', views.DashboardView.updateUser, name="userUpdate"),
     path('createRestaurant', views.DashboardView.AddRestaurant, name = "resAdd"),

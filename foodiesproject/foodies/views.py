@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.db import transaction
 from django.views.generic import View
 from django.contrib.auth import login, logout, authenticate
+from django.template import RequestContext
 from django.contrib import messages
 from .forms import *
 from django.http import HttpResponse, response
@@ -42,9 +43,12 @@ class IndexView(View):
 				request.session['User_ID'] = bUser.User_ID
 				request.session['User_FirstName'] = bUser.User_FirstName
 				request.session['User_LastName'] = bUser.User_LastName
-				request.session['User_Password'] = bUser.User_Password
 				request.session['User_ContactNumber'] = bUser.User_ContactNumber
-				request.session['User_Email'] = bUser.User_Email
+				#ADDRESS
+				request.session['Address_ID'] = bUser.Address_ID.Address_ID
+				request.session['Address_Province'] = bUser.Address_ID.Address_Province
+				request.session['Address_City'] = bUser.Address_ID.Address_City
+				request.session['Address_Street'] = bUser.Address_ID.Address_Street
 				return redirect('http://127.0.0.1:8000/profile/')
 			else:
 				print(form.errors)
@@ -55,12 +59,18 @@ class IndexView(View):
 		if request.method == "POST":
 			user = User.objects.get(User_Email = request.POST['User_Email'])
 			if user.User_Password == request.POST['User_Password']:
+				
 				request.session['User_ID'] = user.User_ID
 				request.session['User_FirstName'] = user.User_FirstName
 				request.session['User_LastName'] = user.User_LastName
-				request.session['User_Password'] = user.User_Password
 				request.session['User_ContactNumber'] = user.User_ContactNumber
-				request.session['User_Email'] = user.User_Email
+				#ADDRESS
+				request.session['Address_ID'] = user.Address_ID.Address_ID
+				request.session['Address_Province'] = user.Address_ID.Address_Province
+				request.session['Address_City'] = user.Address_ID.Address_City
+				request.session['Address_Street'] = user.Address_ID.Address_Street
+				print(request.session['Address_Street'])
+				
 				return redirect('http://127.0.0.1:8000/profile/')
 			else:
 				return HttpResponse("You're Email and Password do not Match bruh.")
@@ -85,6 +95,13 @@ class ProfileView(View):
 	def logout(request):
 		try:
 			del request.session['User_ID']
+			del request.session['User_FirstName']
+			del request.session['User_LastName']
+			del request.session['User_ContactNumber']
+			del request.session['Address_ID']
+			del request.session['Address_Province']
+			del request.session['Address_City']
+			del request.session['Address_Street']
 			print("logged out")
 		except KeyError:
 			pass
@@ -102,24 +119,26 @@ class ProfileView(View):
 				bID = request.POST.get("User_ID")
 				uID = User.objects.get(User_ID = bID)
 
-
-
-
 				orID = request.POST.get("Restaurant_ID")
 				rID = Restaurant.objects.get(Restaurant_ID = orID)
 
-				bDriverID = request.POST.get("Driver_ID")
-				if (bDriverID):
-					uDriverID = Driver.objects.get(Driver_ID = bDriverID)
+				
+				#FOR DELIVERY
+				oType = request.POST.get("Order_Type")
+				if (oType == "Delivery"):
+					cUser = User.objects.get(User_ID = request.POST['User_ID'])
+					cUserStreet = cUser.Address_ID.Address_Street
+					addID = Address.objects.get(Address_Street = cUserStreet)
+					bDriver = Driver.objects.get(Address_ID = addID.Address_ID)
+					print(cUserStreet)
+
+					uDriverID = bDriver
+
 				else:
 					uDriverID = None
 					
-					
 				
-
 				#PRIMARY ORDER ATTRIBUTES
-				
-				oType = request.POST.get("Order_Type")
 				oTotalCost = int(request.POST.get("Order_TotalCost"))
 				Date = request.POST.get("Date")
 				Time = request.POST.get("Time")
@@ -138,12 +157,45 @@ class OrdersView(View):
 	def get(self,request):
 		orders = Order.objects.all()
 		orderitem = OrderItem.objects.all()
+		food = Food.objects.all()
 
 		context = {
 			'orders': orders,
 			'orderitem': orderitem,
+			'food': food,
 		}
 		return render(request,'orders.html', context)
+
+	def AddOrderItem(request):
+		if request.method == "POST":
+			form = OrderItemForms(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+				#FOREIGN ORDER ITEM ATTRIBUTES
+				bOrderID = request.POST.get("Order_ID")
+				uOrderID = Order.objects.get(Order_ID = bOrderID)
+
+				bFoodID = request.POST.get("Food_ID")
+				uFoodID = Food.objects.get(Food_ID = bFoodID)
+				
+
+				#PRIMARY FOOD ATTRIBUTES
+				quantity = int(request.POST.get("Quantity"))
+				cost = quantity * uFoodID.Food_Price
+
+
+				tCost = cost + uOrderID.Order_TotalCost 
+
+				Order.objects.filter(Order_ID = uOrderID.Order_ID).update(Order_TotalCost = tCost)
+				
+
+				form = OrderItem(Order_ID = uOrderID, Food_ID = uFoodID, Quantity = quantity, Cost = cost)
+				form.save()
+				return redirect('http://127.0.0.1:8000/orders/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')	
 
 		
 
