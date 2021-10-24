@@ -423,15 +423,8 @@ class DashboardView(View):
 			if form.is_valid():
 				print(form.is_valid())
 				#FOREIGN USER ATTRIBUTES ADDRESS
-				aProvince = request.POST.get("Address_Province")
-				aCity = request.POST.get("Address_City")
-				aStreet = request.POST.get("Address_Street")
-
-				form = Address(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
-				form.save()
-
-				uAddress = Address.objects.get(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
-				print(uAddress)
+				bAddress = request.POST.get("Address_ID")
+				uAddress = Address.objects.get(Address_ID = bAddress)
 
 				#PRIMARY USER ATTRIBUTES
 				uFname = request.POST.get("User_FirstName")
@@ -440,9 +433,6 @@ class DashboardView(View):
 				uContactNumber = request.POST.get("User_ContactNumber")
 				uEmail = request.POST.get("User_Email")
 
-				
-
-				
 				form = User(User_FirstName = uFname, User_LastName = uLname, User_Password = uPassword, User_ContactNumber = uContactNumber, User_Email = uEmail, Address_ID = uAddress)
 				form.save()
 				return redirect('http://127.0.0.1:8000/dashboard/')

@@ -508,7 +508,7 @@ var myChartdough = new Chart(ctx, {
             <td>{{u.User_Password}}</td>
             <td>{{u.User_ContactNumber}}</td>
             <td>{{u.User_Email}}</td>
-            <td>{{u.Address_ID.Address_ID}}</td>
+            <td>{{u.Address_ID.Address_Province}}, {{u.Address_ID.Address_City}}, {{u.Address_ID.Address_Street}}</td>
             <td><button class="bupdate" data-toggle="modal" data-target="#updateUser-{{u.User_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" data-target="#deleteUser-{{u.User_ID}}">Delete</button></td>
         </tr>
 
@@ -642,7 +642,7 @@ var myChartdough = new Chart(ctx, {
             <td>{{r.Restaurant_Name}}</td>
             <td>{{r.Restaurant_Desc}}</td>
             <td>{{r.Restaurant_ContactNumber}}</td>
-            <td>{{r.Address_ID.Address_ID}}</td>
+            <td>{{r.Address_ID.Address_Province}}, {{r.Address_ID.Address_City}}, {{r.Address_ID.Address_Street}}</td>
             <td><button class="bupdate" data-toggle="modal" data-target="#updateRestaurant-{{r.Restaurant_ID}}">Update</button><hr><button class="bdelete" data-toggle="modal" type="button" data-target="#deleteRestaurant-{{r.Restaurant_ID}}">Delete</button></td>
         </tr>
 
